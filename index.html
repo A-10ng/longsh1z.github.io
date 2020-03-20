@@ -391,7 +391,7 @@
         coverSlider.carousel({
             duration: Number('120'),
             fullWidth: true,
-            indicators: 'true' === 'true',
+            indicators: 'false' === 'true',
             onCycleTo() {
                 if (!initUserPressedOrDraggedActive) {
                     // console.log('initUserPressedOrDraggedActive')
@@ -403,32 +403,11 @@
 
         let carouselIntervalId;
         
-        // Loop to call the next cover article picture.
-        let autoCarousel = function () {
-            carouselIntervalId = setInterval(function () {
-                coverSlider.carousel('next');
-            }, 5000);
-        };
-        autoCarousel();
-        
 
         function restartPlay() {
             
-            clearInterval(carouselIntervalId);
-            autoCarousel();
-            
         };
 
-        
-        // prev and next cover post.
-        $('#prev-cover').click(function () {
-            coverSlider.carousel('prev');
-            restartPlay();
-        });
-        $('#next-cover').click(function () {
-            coverSlider.carousel('next');
-            restartPlay();
-        });
         
     });
 </script>
@@ -480,6 +459,56 @@
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/03/21/ji-ben-gai-kuang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="基本概况">
+                            
+                            <span class="card-title">基本概况</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+该Android学习系列主要是参考郭神的第一行代码（第二版）来学习的，目的是在学习的过程中记录下一些重要的知识点，不喜勿喷，谢谢。
+
+##一、Android系统架构###1.架构图
+
+###2.层级说明
+####（1）Linux内核层
+ 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-21
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Anthony
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Android%E5%85%A5%E9%97%A8/">
+                            <span class="chip bg-color">Android入门</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -536,7 +565,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">125</span>&nbsp;字
+                class="white-color">1.4k</span>&nbsp;字
             
             
             
