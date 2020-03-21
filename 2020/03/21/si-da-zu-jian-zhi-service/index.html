@@ -421,14 +421,14 @@
 </li>
 <li><p><strong>MessageQueue</strong> 主要用于存储所有通过Handler发送的Message。<strong>每个线程只有一个MessageQueue对象</strong>。</p>
 </li>
-<li><p><strong>Looper</strong> 相当于MessageQueue的管家，当调用Looper的loop方法之后，就会进入一个无限循环当中，然后每当发现MessageQueue中存在一条消息，就会将它取出，并传递到Handler的handleMessage方法中。<strong>每个线程只有一个Looper对象</strong>。<br>所以它们四个的数量关系是：每个线程只能有一个Looper和一个MessageQueue，但是可以有多个Handler和多个Message。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-2cb5361373a9e850.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="流程图"></p>
+<li><p><strong>Looper</strong> 相当于MessageQueue的管家，当调用Looper的loop方法之后，就会进入一个无限循环当中，然后每当发现MessageQueue中存在一条消息，就会将它取出，并传递到Handler的handleMessage方法中。<strong>每个线程只有一个Looper对象</strong>。<br>所以它们四个的数量关系是：每个线程只能有一个Looper和一个MessageQueue，但是可以有多个Handler和多个Message。<br><img src="http://longsh1z.top/resources/HexoBlog/Android%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%20%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService/1.jpg" alt="流程图"></p>
 </li>
 </ul>
 <h5 id="2-1-3-小例子"><a href="#2-1-3-小例子" class="headerlink" title="2.1.3 小例子"></a>2.1.3 小例子</h5><p>这里我们实现点击按钮之后在子线程中更新按钮的文字。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/15623160-58678c777354866e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="小例子.png"></p>
+<p><img src="http://longsh1z.top/resources/HexoBlog/Android%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%20%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService/2.png" alt="小例子.png"></p>
 <h5 id="2-1-4-注意"><a href="#2-1-4-注意" class="headerlink" title="2.1.4 注意"></a>2.1.4 注意</h5><p>① 主线程中Looper的轮询死循环为什么没有阻塞主线程？<br>Android是依靠事件驱动的，通过Looper.loop()不断进行消息循环，可以说activity的生命周期都是运行在Looper.loop()的控制之下，一旦退出消息循环，应用也就退出了。<br>② 使用Handler的postDelay()后消息队列会发生什么变化？<br>postDelay的Message并不是先等待一定时间再放到MessageQueue中，而是直接放入并阻塞当前线程，然后将其delay的时间和队头的进行比较，按照触发时间进行排序，更近的则放入队头，保证队头的时间最小，队尾的最大。如果此时队头的Message正是被delay的，则将当前线程堵塞一段时间，直到等待足够的时间再唤醒执行该Message，否则唤醒后直接执行。</p>
 <h4 id="2-2-AsyncTask"><a href="#2-2-AsyncTask" class="headerlink" title="2.2 AsyncTask"></a>2.2 AsyncTask</h4><h5 id="2-2-1-前言"><a href="#2-2-1-前言" class="headerlink" title="2.2.1 前言"></a>2.2.1 前言</h5><p>① AsyncTask的底层原理封装了线程池和Handler，在其之中有两个线程池：<strong>SerialExecutor</strong>用于任务的排队，默认是串行的线程池，在3.0以前核心线程数为5，线程池大小为128，而3.0以后改为同一时间只能处理一个任务；<strong>THREAD_POOL_EXECUTOR</strong>用于真正执行任务。<br>② AsyncTask是一个抽象类，使用前要先继承。（匿名内部类的方式除外）。</p>
-<h5 id="2-2-2-参数和方法说明"><a href="#2-2-2-参数和方法说明" class="headerlink" title="2.2.2 参数和方法说明"></a>2.2.2 参数和方法说明</h5><p><img src="https://upload-images.jianshu.io/upload_images/15623160-4e0357d0bbfec2ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="2-2-2-参数和方法说明"><a href="#2-2-2-参数和方法说明" class="headerlink" title="2.2.2 参数和方法说明"></a>2.2.2 参数和方法说明</h5><p><img src="http://longsh1z.top/resources/HexoBlog/Android%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%20%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService/3.png" alt=""></p>
 <p>① 在继承的时候我们需要指定三个参数，它们代表的意义如下：</p>
 <ul>
 <li><p><strong>Params</strong>：在执行AsyncTask时需要传入的参数，它可以在后台任务中使用。</p>
@@ -605,7 +605,7 @@ Intent intent <span class="token operator">=</span> new Intent<span class="token
 startService<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h5 id="2-4-3-注意"><a href="#2-4-3-注意" class="headerlink" title="2.4.3 注意"></a>2.4.3 注意</h5><p>① IntentService与Activity间通信：<br>Activity传值给IntentService：Intent、EventBus等<br>IntentService传值给Activity：广播、EventBus等（回调我试过了，竟然不行！）</p>
 <p>② 为何不用bindService方式启动IntentService？<br>IntentService的工作原理是，在IntentService的onCreate里创建一个HandlerThread，并利用其内部的Looper实例化一个ServiceHandler对象；而这个ServiceHandler用于处理消息的handleMessage方法会去调用IntentService的onHandleIntent方法，这也是为什么可在该方法中去处理后台任务的原因。当有Intent任务请求时会把Intent封装成Message，然后ServiceHandler会把消息发送出去，而发送消息是在onStartCommand中完成的，只能通过startService方法才可走该生命周期方法，所以不能用bindService方式启动IntentService。</p>
-<h3 id="三、服务的生命周期"><a href="#三、服务的生命周期" class="headerlink" title="三、服务的生命周期"></a>三、服务的生命周期</h3><p><img src="https://upload-images.jianshu.io/upload_images/15623160-5d615e1f533e4b2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="三、服务的生命周期"><a href="#三、服务的生命周期" class="headerlink" title="三、服务的生命周期"></a>三、服务的生命周期</h3><p><img src="http://longsh1z.top/resources/HexoBlog/Android%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%20%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService/4.jpg" alt=""></p>
 <h4 id="3-1-通过startService方式启动服务"><a href="#3-1-通过startService方式启动服务" class="headerlink" title="3.1 通过startService方式启动服务"></a>3.1 通过startService方式启动服务</h4><ul>
 <li>生命周期：onCreate -&gt; onStartCommand -&gt; onDestroy</li>
 <li>通过stopService或者stopSelf方法停止服务。</li>

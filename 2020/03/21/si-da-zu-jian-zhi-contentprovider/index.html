@@ -412,7 +412,7 @@
 </ul>
 <h3 id="二、数据存储方案"><a href="#二、数据存储方案" class="headerlink" title="二、数据存储方案"></a>二、数据存储方案</h3><h4 id="2-1-文件存储"><a href="#2-1-文件存储" class="headerlink" title="2.1 文件存储"></a>2.1 文件存储</h4><h5 id="2-1-1-前言"><a href="#2-1-1-前言" class="headerlink" title="2.1.1 前言"></a>2.1.1 前言</h5><p>文件存储是Android中最基本的一种数据存储方式，它不对存储的内容进行任何的格式化处理。因此，它比较适合用于存储一些简单的文本数据或二进制数据。<br>对于存储操作，Context类提供了一个openFileOutput方法。对于读取操作，Context类提供了一个openFileInput方法。两个方法返回的类型分别是FileOutStream和FileInputStream。</p>
 <h5 id="2-1-2-使用方法"><a href="#2-1-2-使用方法" class="headerlink" title="2.1.2 使用方法"></a>2.1.2 使用方法</h5><p>这里结合一个小案例说明：点击“保存”按钮将输入框的内容存储到文件中，点击“读取”按钮则读取文件中的内容</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/15623160-13eb83f8eb0325c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://longsh1z.top/resources/HexoBlog/Android%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BContent%20Provider/1.png" alt=""></p>
 <pre class=" language-bash"><code class="language-bash">//保存数据到文件中
      private void saveFile<span class="token punctuation">(</span>String content<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         FileOutputStream fos <span class="token operator">=</span> null<span class="token punctuation">;</span>
@@ -556,7 +556,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper <span class="token punctuat
       //getWritableDatabase与getReadableDatabase方法的区别在于，当数据库不可写入的时候（如磁盘空间已满），getReadableDatabase方法返回的对象将以只读的方式去打开数据库，而getWritableDatabase方法则将抛出异常
      db <span class="token operator">=</span> helper.getWritableDatabase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
      <span class="token keyword">break</span><span class="token punctuation">;</span></code></pre>
-<h5 id="2-3-3-升级数据库"><a href="#2-3-3-升级数据库" class="headerlink" title="2.3.3 升级数据库"></a>2.3.3 升级数据库</h5><p><img src="https://upload-images.jianshu.io/upload_images/15623160-658fbc1c83c454fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="2-3-3-升级数据库"><a href="#2-3-3-升级数据库" class="headerlink" title="2.3.3 升级数据库"></a>2.3.3 升级数据库</h5><p><img src="http://longsh1z.top/resources/HexoBlog/Android%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BContent%20Provider/2.png" alt=""></p>
 <p>重新写好MySQLiteHelper之后，只需在new MySQLiteHelper的最后一个参数里面传入一个比之前大的数，再调用getWritableDatabase或getReadableDatabase方法即可升级数据库了。</p>
 <h5 id="2-3-4-增删查改"><a href="#2-3-4-增删查改" class="headerlink" title="2.3.4 增删查改"></a>2.3.4 增删查改</h5><pre class=" language-bash"><code class="language-bash">//增加数据
 <span class="token keyword">case</span> R.id.btn_insert:
@@ -735,7 +735,7 @@ permission:android.permission.SEND_SMS</code></pre>
 <li>每个应用程序要想访问内容提供器中的数据，就一定要借助ContentResolver类，可以通过Context中的<strong>getContentResolver</strong>方法来获取。ContentResolver类提供了一系列方法用于对数据进行CRUD操作，<strong>insert</strong>方法用于添加数据，<strong>update</strong>方法用于更新数据，<strong>delete</strong>方法用于删除数据，<strong>query</strong>方法用于查询数据。它和SQLiteDatabase很像，只不过它不接收表名，而是换成了Uri参数。</li>
 <li>Uri包括两部分：authority和path。authority命名为 <strong>包名.provider</strong>，path命名为 <strong>表名</strong> ，所以一个标准的Uri可以为<strong>content://com.example.testspecial.provider/table1</strong></li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/15623160-35f0c70d237ae66a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://longsh1z.top/resources/HexoBlog/Android%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BContent%20Provider/3.png" alt=""></p>
 <blockquote>
 <p>除此之外，我们还可以在这个Uri的后面加上一个id，如下所示<br><strong>content://com.example.testspecial.provider/table1/1</strong><br>它表示调用方希望访问的是com.example.testspecial这个应用的table1表中id为1的数据。</p>
 </blockquote>
@@ -820,7 +820,7 @@ getContentResolver<span class="token punctuation">(</span><span class="token pun
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p><img src="https://upload-images.jianshu.io/upload_images/15623160-34d4342c96277695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://longsh1z.top/resources/HexoBlog/Android%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BContent%20Provider/4.png" alt=""></p>
 <h3 id="五、创建自己的内容提供器"><a href="#五、创建自己的内容提供器" class="headerlink" title="五、创建自己的内容提供器"></a>五、创建自己的内容提供器</h3><h4 id="5-1-前言"><a href="#5-1-前言" class="headerlink" title="5.1 前言"></a>5.1 前言</h4><p>整体思路：<br>首先，自定义类继承ContentProvider。<br>然后，重写onCreate、query、insert、update、delete、getType方法。<br>最后，记得在AndroidManifest文件中注册该content provider。</p>
 <h4 id="5-2-实例"><a href="#5-2-实例" class="headerlink" title="5.2 实例"></a>5.2 实例</h4><pre class=" language-bash"><code class="language-bash">public class MyProvider extends ContentProvider <span class="token punctuation">{</span>
 
