@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="四大组件之Activity, LongSh1z">
+    <meta name="keywords" content="Android学习（二）—— 四大组件之Activity, LongSh1z">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>四大组件之Activity | LongSh1z</title>
+    <title>Android学习（二）—— 四大组件之Activity | LongSh1z</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -243,12 +243,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">四大组件之Activity</h1>
+                    <h1 class="description center-align post-title">Android学习（二）—— 四大组件之Activity</h1>
                 </div>
             </div>
         </div>
@@ -406,18 +406,18 @@
                 <blockquote>
 <p>本文目录结构：<br>一、活动的生命周期<br>二、活动的启动模式<br>三、活动间的信息传递之一 —— Intent</p>
 </blockquote>
-<h3 id="一、活动的生命周期"><a href="#一、活动的生命周期" class="headerlink" title="一、活动的生命周期"></a>一、活动的生命周期</h3><h6 id="1-返回栈"><a href="#1-返回栈" class="headerlink" title="1.返回栈"></a>1.返回栈</h6><p>Android是使用任务（Task）来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个栈也叫返回栈。在默认情况下，当我们启动了一个活动，那么它会入栈，并处于栈顶的位置。当我们按下返回键或者调用finish方法时，处于栈顶的活动就会出栈。系统总是显示处于栈顶的活动。</p>
-<h6 id="2-活动状态"><a href="#2-活动状态" class="headerlink" title="2.活动状态"></a>2.活动状态</h6><p>活动的状态可以分为4种：<br><strong>（1）运行状态</strong><br>当一个活动处于栈顶的时候，那么它就处于运行状态。系统就不愿意就是回收运行状态的活动，因为这会给用户带来很不好的体验。<br><strong>（2）暂停状态</strong><br>当一个活动不处于栈顶但仍然可见时，它就处于暂停状态。比如对话框形式的活动只会占用屏幕中间的区域。系统也不愿意回收这样的活动，只有在内存极低的时候才会考虑去回收。<br><strong>（3）停止状态</strong><br>当一个活动不再处于栈顶，并且不可见的时候，就进入了停止状态。系统仍然会为这种活动保存相应的状态和成员变量，但这并不是完全可靠的。当其他地方需要内存，系统就有可能回收掉该活动。<br><strong>（4）销毁状态</strong><br>当一个活动被栈移除之后，它就处于销毁状态。系统最愿意回收这样的活动，从而保持手机内存的充足。</p>
-<h6 id="3-活动的生命周期"><a href="#3-活动的生命周期" class="headerlink" title="3.活动的生命周期"></a>3.活动的生命周期</h6><p><strong>（1）onCreate</strong><br>它会在活动第一次创建的时候被调用。我们应该在该方法中完成活动的初始化操作，比如加载布局、绑定事件等。<br><strong>（2）onStart</strong><br>该方法在活动由不可见变为可见的时候调用。<br><strong>（3）onResume</strong><br>该方法在活动准备好和用户交互的时候调用。此时的活动一定处于栈顶的位置。<br><strong>（4）onPause</strong><br>该方法在系统准备去启动或恢复另一个活动的时候调用。我们通常会在这个方法中将一些消耗CPU的资源释放掉，但该方法的执行速度一定要快，不然会影响到新的栈顶活动的调用。<br><strong>（5）onStop</strong><br>该方法在活动完全不可见的时候调用。它和onPause方法不同的是，如果启动的新活动是一个对话框形式的活动，那么onPause方法会被调用，而它不会。<br><strong>（6）onDestroy</strong><br>该方法会在活动被销毁之前调用。<br><strong>（7）onRestart</strong><br>该方法会在活动从停止状态变为运行状态之前调用。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-740bf5ba73e9c647.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="活动的生命周期.jpg"></p>
+<h3 id="一、活动的生命周期"><a href="#一、活动的生命周期" class="headerlink" title="一、活动的生命周期"></a>一、活动的生命周期</h3><h4 id="1-返回栈"><a href="#1-返回栈" class="headerlink" title="1.返回栈"></a>1.返回栈</h4><p>Android是使用任务（Task）来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个栈也叫返回栈。在默认情况下，当我们启动了一个活动，那么它会入栈，并处于栈顶的位置。当我们按下返回键或者调用finish方法时，处于栈顶的活动就会出栈。系统总是显示处于栈顶的活动。</p>
+<h4 id="2-活动状态"><a href="#2-活动状态" class="headerlink" title="2.活动状态"></a>2.活动状态</h4><p>活动的状态可以分为4种：<br><strong>（1）运行状态</strong><br>当一个活动处于栈顶的时候，那么它就处于运行状态。系统就不愿意就是回收运行状态的活动，因为这会给用户带来很不好的体验。<br><strong>（2）暂停状态</strong><br>当一个活动不处于栈顶但仍然可见时，它就处于暂停状态。比如对话框形式的活动只会占用屏幕中间的区域。系统也不愿意回收这样的活动，只有在内存极低的时候才会考虑去回收。<br><strong>（3）停止状态</strong><br>当一个活动不再处于栈顶，并且不可见的时候，就进入了停止状态。系统仍然会为这种活动保存相应的状态和成员变量，但这并不是完全可靠的。当其他地方需要内存，系统就有可能回收掉该活动。<br><strong>（4）销毁状态</strong><br>当一个活动被栈移除之后，它就处于销毁状态。系统最愿意回收这样的活动，从而保持手机内存的充足。</p>
+<h4 id="3-活动的生命周期"><a href="#3-活动的生命周期" class="headerlink" title="3.活动的生命周期"></a>3.活动的生命周期</h4><p><strong>（1）onCreate</strong><br>它会在活动第一次创建的时候被调用。我们应该在该方法中完成活动的初始化操作，比如加载布局、绑定事件等。<br><strong>（2）onStart</strong><br>该方法在活动由不可见变为可见的时候调用。<br><strong>（3）onResume</strong><br>该方法在活动准备好和用户交互的时候调用。此时的活动一定处于栈顶的位置。<br><strong>（4）onPause</strong><br>该方法在系统准备去启动或恢复另一个活动的时候调用。我们通常会在这个方法中将一些消耗CPU的资源释放掉，但该方法的执行速度一定要快，不然会影响到新的栈顶活动的调用。<br><strong>（5）onStop</strong><br>该方法在活动完全不可见的时候调用。它和onPause方法不同的是，如果启动的新活动是一个对话框形式的活动，那么onPause方法会被调用，而它不会。<br><strong>（6）onDestroy</strong><br>该方法会在活动被销毁之前调用。<br><strong>（7）onRestart</strong><br>该方法会在活动从停止状态变为运行状态之前调用。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-740bf5ba73e9c647.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="活动的生命周期.jpg"></p>
 <blockquote>
 <p>PS:如果活动被销毁了，但是可能存在临时数据和状态，那要怎么办呢？<br>①可以调用onSaveInstanceState方法将数据临时保存起来<br>@Override<br>protected void onSaveInstanceState(Bundle outState){<br>  super.onSaveInstanceState(outState);<br>  String data = “Keep it”;<br>  outState.putString(“tempData”,data);<br>}<br>②然后在onCreate方法中判断savedInstanceState是否为空<br>@Override<br>protected void onCreate(Bundle savedInstanceState){<br>  super.onCreate(savedInstanceState);<br>  ……<br>  if(savedInstanceState != null)<br>  String tempData = savedInstanceState.getString(“tempData”);<br>}</p>
 </blockquote>
 <h3 id="二、活动的启动模式"><a href="#二、活动的启动模式" class="headerlink" title="二、活动的启动模式"></a>二、活动的启动模式</h3><p>活动的启动模式一共有4种，它们需要在AndroidManifest文件中通过给<activity>标签指定android:launchMode属性来设置。</activity></p>
-<h6 id="1-standard"><a href="#1-standard" class="headerlink" title="1.standard"></a>1.standard</h6><p>它是活动默认的启动模式。每当有一个活动启动时，它就会入栈并处于栈顶的位置。系统根本不在乎栈里是否已经有了该活动的实例，每次启动活动都会创建一个新的实例。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-595907773053c65e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="standard.jpg"></p>
-<h6 id="2-singleTop"><a href="#2-singleTop" class="headerlink" title="2.singleTop"></a>2.singleTop</h6><p>当活动指定为该模式时，在启动活动时如果发现栈顶的活动已经是该活动，则系统会直接使用它，不会再创建新的活动实例。但如果该活动不在栈顶时再启动该活动时，还是会创建新的实例的。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-85badf440c8b0535.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="singleTop.jpg"></p>
-<h6 id="3-singleTask"><a href="#3-singleTask" class="headerlink" title="3.singleTask"></a>3.singleTask</h6><p>当活动处于该模式时，每次启动活动时系统首先会在栈里检查是否存在该活动的实例，如果发现有则直接使用，并把在该活动之上的所有活动出栈。如果没发现则创建一个新的活动实例。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-6334be4faed21de6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="singleTask.jpg"></p>
-<h6 id="4-singleInstance"><a href="#4-singleInstance" class="headerlink" title="4.singleInstance"></a>4.singleInstance</h6><p>当活动处于该模式时，系统会启用一个新的栈来管理这个活动。它可以解决共享活动实例的问题。比如：活动B为该模式，然后A启动B，B启动C，那么第一次按下返回键时系统会回到A，再按下一次时会回到B，再按下一次则退出应用。一个栈里的活动没有了之后才会去到另一个栈。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-e4ece33e363cfc1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="singleInstance.png"></p>
-<h3 id="三、活动间的信息传递之一-——-Intent"><a href="#三、活动间的信息传递之一-——-Intent" class="headerlink" title="三、活动间的信息传递之一 —— Intent"></a>三、活动间的信息传递之一 —— Intent</h3><h6 id="1-显式Intent"><a href="#1-显式Intent" class="headerlink" title="1.显式Intent"></a>1.显式Intent</h6><p>（1）构造方法</p>
+<h4 id="1-standard"><a href="#1-standard" class="headerlink" title="1.standard"></a>1.standard</h4><p>它是活动默认的启动模式。每当有一个活动启动时，它就会入栈并处于栈顶的位置。系统根本不在乎栈里是否已经有了该活动的实例，每次启动活动都会创建一个新的实例。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-595907773053c65e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="standard.jpg"></p>
+<h4 id="2-singleTop"><a href="#2-singleTop" class="headerlink" title="2.singleTop"></a>2.singleTop</h4><p>当活动指定为该模式时，在启动活动时如果发现栈顶的活动已经是该活动，则系统会直接使用它，不会再创建新的活动实例。但如果该活动不在栈顶时再启动该活动时，还是会创建新的实例的。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-85badf440c8b0535.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="singleTop.jpg"></p>
+<h4 id="3-singleTask"><a href="#3-singleTask" class="headerlink" title="3.singleTask"></a>3.singleTask</h4><p>当活动处于该模式时，每次启动活动时系统首先会在栈里检查是否存在该活动的实例，如果发现有则直接使用，并把在该活动之上的所有活动出栈。如果没发现则创建一个新的活动实例。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-6334be4faed21de6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="singleTask.jpg"></p>
+<h4 id="4-singleInstance"><a href="#4-singleInstance" class="headerlink" title="4.singleInstance"></a>4.singleInstance</h4><p>当活动处于该模式时，系统会启用一个新的栈来管理这个活动。它可以解决共享活动实例的问题。比如：活动B为该模式，然后A启动B，B启动C，那么第一次按下返回键时系统会回到A，再按下一次时会回到B，再按下一次则退出应用。一个栈里的活动没有了之后才会去到另一个栈。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-e4ece33e363cfc1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="singleInstance.png"></p>
+<h3 id="三、活动间的信息传递之一-——-Intent"><a href="#三、活动间的信息传递之一-——-Intent" class="headerlink" title="三、活动间的信息传递之一 —— Intent"></a>三、活动间的信息传递之一 —— Intent</h3><h4 id="1-显式Intent"><a href="#1-显式Intent" class="headerlink" title="1.显式Intent"></a>1.显式Intent</h4><p>（1）构造方法</p>
 <pre class=" language-bash"><code class="language-bash">//Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>Context packageContext,Class<span class="token operator">&lt;</span>?<span class="token operator">></span> cls<span class="token punctuation">)</span><span class="token punctuation">;</span>
 //前者为启动活动的上下文，后者为想要启动的目标活动
 Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>FirstActivity.this,SecondActivity.class<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
@@ -432,7 +432,7 @@ intent.setClass<span class="token punctuation">(</span>this, SecondActivity.clas
 // 或者intent.setClassName<span class="token punctuation">(</span>this, <span class="token string">"top.longsh1z.www.SecondActivity"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
 // 或者intent.setClassName<span class="token punctuation">(</span>this.getPackageName<span class="token punctuation">(</span><span class="token punctuation">)</span>, <span class="token string">"top.longsh1z.www.SecondActivity"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        
 startActivity<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h6 id="2-隐式Intent"><a href="#2-隐式Intent" class="headerlink" title="2.隐式Intent"></a>2.隐式Intent</h6><p>顾名思义，隐式Intent不会明确的指出想要启动的activity，而是通过指定action和category等信息让系统来选择要启动的活动。</p>
+<h4 id="2-隐式Intent"><a href="#2-隐式Intent" class="headerlink" title="2.隐式Intent"></a>2.隐式Intent</h4><p>顾名思义，隐式Intent不会明确的指出想要启动的activity，而是通过指定action和category等信息让系统来选择要启动的活动。</p>
 <p>首先，在AndroidManifest文件中，目标活动要有<intent-filter>标签，里面包含<action><category>子标签，只有这两个子标签中的内容同时匹配才能够生效。比如：</category></action></intent-filter></p>
 <pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>activity android:name<span class="token operator">=</span><span class="token string">".ui.Main2Activity"</span><span class="token operator">></span>
   <span class="token operator">&lt;</span>intent-filter<span class="token operator">></span>
@@ -454,14 +454,14 @@ startActivity<span class="token punctuation">(</span>intent<span class="token pu
 intent.setAction<span class="token punctuation">(</span><span class="token string">"top.longsh1z.www.Main2Activity"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 //如果category不是默认的话同上
 startActivity<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h6 id="3-更多隐式Intent的用法"><a href="#3-更多隐式Intent的用法" class="headerlink" title="3.更多隐式Intent的用法"></a>3.更多隐式Intent的用法</h6><p>我们也可以调用系统中固有的活动，比如系统的浏览器，拨号等等。比如调用系统浏览器：</p>
+<h4 id="3-更多隐式Intent的用法"><a href="#3-更多隐式Intent的用法" class="headerlink" title="3.更多隐式Intent的用法"></a>3.更多隐式Intent的用法</h4><p>我们也可以调用系统中固有的活动，比如系统的浏览器，拨号等等。比如调用系统浏览器：</p>
 <pre class=" language-bash"><code class="language-bash">//Intent.ACTION_VIEW是系统内置的动作，其常量值为android.intent.action.VIEW
 Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>Intent.ACTION_VIEW<span class="token punctuation">)</span><span class="token punctuation">;</span>
 //这条语句的意思是打开百度，具体其他用法请自己搜索
 intent.setData<span class="token punctuation">(</span>Uri.parse<span class="token punctuation">(</span><span class="token string">"https://www.baidu.com"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
 startActivity<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p><strong>另外，在一个活动的<action>标签里也可以写成系统内置的动作。当然这个前提是你的程序要有这样的功能，不然的话就会报错。</action></strong></p>
-<h6 id="4-向下一个活动传递数据"><a href="#4-向下一个活动传递数据" class="headerlink" title="4.向下一个活动传递数据"></a>4.向下一个活动传递数据</h6><p>使用intent.putExtra方法放消息，使用intent.getStringExtra方法拿消息。</p>
+<h4 id="4-向下一个活动传递数据"><a href="#4-向下一个活动传递数据" class="headerlink" title="4.向下一个活动传递数据"></a>4.向下一个活动传递数据</h4><p>使用intent.putExtra方法放消息，使用intent.getStringExtra方法拿消息。</p>
 <pre class=" language-bash"><code class="language-bash">//放消息进intent中
 String data <span class="token operator">=</span> <span class="token string">"Hello world!"</span><span class="token punctuation">;</span>
 Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>FirstActivity.this,SecondActivity.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -754,9 +754,9 @@ protected void onActivityResult<span class="token punctuation">(</span>int reque
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Receiver">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Android学习（三）—— 四大组件之Boradcast Receiver">
                         
-                        <span class="card-title">Receiver</span>
+                        <span class="card-title">Android学习（三）—— 四大组件之Boradcast Receiver</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

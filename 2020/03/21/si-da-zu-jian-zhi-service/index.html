@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="四大组件之Service, LongSh1z">
+    <meta name="keywords" content="Android学习（四）—— 四大组件之Service, LongSh1z">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>四大组件之Service | LongSh1z</title>
+    <title>Android学习（四）—— 四大组件之Service | LongSh1z</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -243,12 +243,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">四大组件之Service</h1>
+                    <h1 class="description center-align post-title">Android学习（四）—— 四大组件之Service</h1>
                 </div>
             </div>
         </div>
@@ -406,11 +406,11 @@
                 <blockquote>
 <p>本文目录结构：<br>一、服务简介<br>二、多线程编程<br>三、服务的生命周期<br>四、服务的基本用法<br>五、前台服务<br>六、如何保证service不被杀死</p>
 </blockquote>
-<h3 id="一、服务简介"><a href="#一、服务简介" class="headerlink" title="一、服务简介"></a>一、服务简介</h3><h5 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h5><p>服务在Android中的运用主要是实现任务在后台的运行，特别是那些不需要和用户交互而且还要求长期运行的任务，比如下载资源。服务的运行不依赖于任何用户界面，即使程序被切换到后台，或者用户打开了另外一个应用程序，服务仍然能够保持正常运行。</p>
-<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><p>①服务并不是运行在一个独立的进程中的，而是依赖于创建服务时所在的应用进程。所以当该进程被杀掉时，所有依赖于该进程的服务也会停止运行。<br>②服务并不会自动开启线程，所有代码都是运行在主线程当中的。</p>
+<h3 id="一、服务简介"><a href="#一、服务简介" class="headerlink" title="一、服务简介"></a>一、服务简介</h3><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4><p>服务在Android中的运用主要是实现任务在后台的运行，特别是那些不需要和用户交互而且还要求长期运行的任务，比如下载资源。服务的运行不依赖于任何用户界面，即使程序被切换到后台，或者用户打开了另外一个应用程序，服务仍然能够保持正常运行。</p>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>①服务并不是运行在一个独立的进程中的，而是依赖于创建服务时所在的应用进程。所以当该进程被杀掉时，所有依赖于该进程的服务也会停止运行。<br>②服务并不会自动开启线程，所有代码都是运行在主线程当中的。</p>
 <h3 id="二、多线程编程"><a href="#二、多线程编程" class="headerlink" title="二、多线程编程"></a>二、多线程编程</h3><p>Android中的多线程主要有Thread与Handler的结合使用、AsyncTask、HandlerThread以及IntentService四种方式</p>
-<h5 id="2-1-Thread与Handler的结合使用"><a href="#2-1-Thread与Handler的结合使用" class="headerlink" title="2.1 Thread与Handler的结合使用"></a>2.1 Thread与Handler的结合使用</h5><h6 id="2-1-1-创建方式"><a href="#2-1-1-创建方式" class="headerlink" title="2.1.1 创建方式"></a>2.1.1 创建方式</h6><p>Thread的创建方法我就不多讲了，在我的文章<a href="https://www.jianshu.com/p/652e54187fd6" target="_blank" rel="noopener">《那些你所不知道的Java小知识（持续更新）》</a>的第3点中可以看到。因为系统不建议在子线程中更新UI，但是有些时候我们必须在子线程里去执行一些耗时任务，然后根据任务的执行结果来更新相应的控件。因此Android为我们提供了一个<strong>异步消息处理机制</strong>。（至于为什么不建议，大家可以去看一下鸿洋的<a href="https://mp.weixin.qq.com/s/ZBHpbOj6cojvUCVZ5fAYBA" target="_blank" rel="noopener">《Android中子线程真的不能更新UI吗？》</a>，讲解的很详细）</p>
-<h6 id="2-1-2-异步消息处理机制"><a href="#2-1-2-异步消息处理机制" class="headerlink" title="2.1.2 异步消息处理机制"></a>2.1.2 异步消息处理机制</h6><p>该机制主要由四个部分组成：Message，Handler，MessageQueue和Looper。</p>
+<h4 id="2-1-Thread与Handler的结合使用"><a href="#2-1-Thread与Handler的结合使用" class="headerlink" title="2.1 Thread与Handler的结合使用"></a>2.1 Thread与Handler的结合使用</h4><h5 id="2-1-1-创建方式"><a href="#2-1-1-创建方式" class="headerlink" title="2.1.1 创建方式"></a>2.1.1 创建方式</h5><p>Thread的创建方法我就不多讲了，在我的文章<a href="https://www.jianshu.com/p/652e54187fd6" target="_blank" rel="noopener">《那些你所不知道的Java小知识（持续更新）》</a>的第3点中可以看到。因为系统不建议在子线程中更新UI，但是有些时候我们必须在子线程里去执行一些耗时任务，然后根据任务的执行结果来更新相应的控件。因此Android为我们提供了一个<strong>异步消息处理机制</strong>。（至于为什么不建议，大家可以去看一下鸿洋的<a href="https://mp.weixin.qq.com/s/ZBHpbOj6cojvUCVZ5fAYBA" target="_blank" rel="noopener">《Android中子线程真的不能更新UI吗？》</a>，讲解的很详细）</p>
+<h5 id="2-1-2-异步消息处理机制"><a href="#2-1-2-异步消息处理机制" class="headerlink" title="2.1.2 异步消息处理机制"></a>2.1.2 异步消息处理机制</h5><p>该机制主要由四个部分组成：Message，Handler，MessageQueue和Looper。</p>
 <ul>
 <li><p><strong>Message</strong> 是在线程之间传递的，它可以携带少量的信息，用于在不同线程之间交换数据。<strong>每个线程可以有多个Message对象</strong>。</p>
 <blockquote>
@@ -424,11 +424,11 @@
 <li><p><strong>Looper</strong> 相当于MessageQueue的管家，当调用Looper的loop方法之后，就会进入一个无限循环当中，然后每当发现MessageQueue中存在一条消息，就会将它取出，并传递到Handler的handleMessage方法中。<strong>每个线程只有一个Looper对象</strong>。<br>所以它们四个的数量关系是：每个线程只能有一个Looper和一个MessageQueue，但是可以有多个Handler和多个Message。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-2cb5361373a9e850.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="流程图"></p>
 </li>
 </ul>
-<h6 id="2-1-3-小例子"><a href="#2-1-3-小例子" class="headerlink" title="2.1.3 小例子"></a>2.1.3 小例子</h6><p>这里我们实现点击按钮之后在子线程中更新按钮的文字。</p>
+<h5 id="2-1-3-小例子"><a href="#2-1-3-小例子" class="headerlink" title="2.1.3 小例子"></a>2.1.3 小例子</h5><p>这里我们实现点击按钮之后在子线程中更新按钮的文字。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/15623160-58678c777354866e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="小例子.png"></p>
-<h6 id="2-1-4-注意"><a href="#2-1-4-注意" class="headerlink" title="2.1.4 注意"></a>2.1.4 注意</h6><p>① 主线程中Looper的轮询死循环为什么没有阻塞主线程？<br>Android是依靠事件驱动的，通过Looper.loop()不断进行消息循环，可以说activity的生命周期都是运行在Looper.loop()的控制之下，一旦退出消息循环，应用也就退出了。<br>② 使用Handler的postDelay()后消息队列会发生什么变化？<br>postDelay的Message并不是先等待一定时间再放到MessageQueue中，而是直接放入并阻塞当前线程，然后将其delay的时间和队头的进行比较，按照触发时间进行排序，更近的则放入队头，保证队头的时间最小，队尾的最大。如果此时队头的Message正是被delay的，则将当前线程堵塞一段时间，直到等待足够的时间再唤醒执行该Message，否则唤醒后直接执行。</p>
-<h5 id="2-2-AsyncTask"><a href="#2-2-AsyncTask" class="headerlink" title="2.2 AsyncTask"></a>2.2 AsyncTask</h5><h6 id="2-2-1-前言"><a href="#2-2-1-前言" class="headerlink" title="2.2.1 前言"></a>2.2.1 前言</h6><p>① AsyncTask的底层原理封装了线程池和Handler，在其之中有两个线程池：<strong>SerialExecutor</strong>用于任务的排队，默认是串行的线程池，在3.0以前核心线程数为5，线程池大小为128，而3.0以后改为同一时间只能处理一个任务；<strong>THREAD_POOL_EXECUTOR</strong>用于真正执行任务。<br>② AsyncTask是一个抽象类，使用前要先继承。（匿名内部类的方式除外）。</p>
-<h6 id="2-2-2-参数和方法说明"><a href="#2-2-2-参数和方法说明" class="headerlink" title="2.2.2 参数和方法说明"></a>2.2.2 参数和方法说明</h6><p><img src="https://upload-images.jianshu.io/upload_images/15623160-4e0357d0bbfec2ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="2-1-4-注意"><a href="#2-1-4-注意" class="headerlink" title="2.1.4 注意"></a>2.1.4 注意</h5><p>① 主线程中Looper的轮询死循环为什么没有阻塞主线程？<br>Android是依靠事件驱动的，通过Looper.loop()不断进行消息循环，可以说activity的生命周期都是运行在Looper.loop()的控制之下，一旦退出消息循环，应用也就退出了。<br>② 使用Handler的postDelay()后消息队列会发生什么变化？<br>postDelay的Message并不是先等待一定时间再放到MessageQueue中，而是直接放入并阻塞当前线程，然后将其delay的时间和队头的进行比较，按照触发时间进行排序，更近的则放入队头，保证队头的时间最小，队尾的最大。如果此时队头的Message正是被delay的，则将当前线程堵塞一段时间，直到等待足够的时间再唤醒执行该Message，否则唤醒后直接执行。</p>
+<h4 id="2-2-AsyncTask"><a href="#2-2-AsyncTask" class="headerlink" title="2.2 AsyncTask"></a>2.2 AsyncTask</h4><h5 id="2-2-1-前言"><a href="#2-2-1-前言" class="headerlink" title="2.2.1 前言"></a>2.2.1 前言</h5><p>① AsyncTask的底层原理封装了线程池和Handler，在其之中有两个线程池：<strong>SerialExecutor</strong>用于任务的排队，默认是串行的线程池，在3.0以前核心线程数为5，线程池大小为128，而3.0以后改为同一时间只能处理一个任务；<strong>THREAD_POOL_EXECUTOR</strong>用于真正执行任务。<br>② AsyncTask是一个抽象类，使用前要先继承。（匿名内部类的方式除外）。</p>
+<h5 id="2-2-2-参数和方法说明"><a href="#2-2-2-参数和方法说明" class="headerlink" title="2.2.2 参数和方法说明"></a>2.2.2 参数和方法说明</h5><p><img src="https://upload-images.jianshu.io/upload_images/15623160-4e0357d0bbfec2ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>① 在继承的时候我们需要指定三个参数，它们代表的意义如下：</p>
 <ul>
 <li><p><strong>Params</strong>：在执行AsyncTask时需要传入的参数，它可以在后台任务中使用。</p>
@@ -490,10 +490,10 @@
 <p>如果想要启动这个后台任务，只需要执行new MyTask().execute();即可。</p>
 </li>
 </ul>
-<p>######2.2.3 注意</p>
+<p>#####2.2.3 注意</p>
 <p>① 不要直接调用onPreExecute()、doInBackground()、onProgressUpdate()、onPostExecute()和onCancelled()方法。<br>② 一个异步对象只能调用过一次execute方法。</p>
-<h5 id="2-3-HandlerThread"><a href="#2-3-HandlerThread" class="headerlink" title="2.3 HandlerThread"></a>2.3 HandlerThread</h5><h6 id="2-3-1-前言"><a href="#2-3-1-前言" class="headerlink" title="2.3.1 前言"></a>2.3.1 前言</h6><p>HandlerThread是一种具有消息循环的线程，其内部可使用Handler。通俗来讲，与子线程绑定的handler发送出去的消息，是在子线程当中执行的。</p>
-<h6 id="2-3-2-使用方法"><a href="#2-3-2-使用方法" class="headerlink" title="2.3.2 使用方法"></a>2.3.2 使用方法</h6><p>整体思路：将子线程与workHandler绑定之后，在要进行耗时操作的地方通过workHandler发送消息，然后在通过mainHandler发送消息进行主线程的UI更新。</p>
+<h4 id="2-3-HandlerThread"><a href="#2-3-HandlerThread" class="headerlink" title="2.3 HandlerThread"></a>2.3 HandlerThread</h4><h5 id="2-3-1-前言"><a href="#2-3-1-前言" class="headerlink" title="2.3.1 前言"></a>2.3.1 前言</h5><p>HandlerThread是一种具有消息循环的线程，其内部可使用Handler。通俗来讲，与子线程绑定的handler发送出去的消息，是在子线程当中执行的。</p>
+<h5 id="2-3-2-使用方法"><a href="#2-3-2-使用方法" class="headerlink" title="2.3.2 使用方法"></a>2.3.2 使用方法</h5><p>整体思路：将子线程与workHandler绑定之后，在要进行耗时操作的地方通过workHandler发送消息，然后在通过mainHandler发送消息进行主线程的UI更新。</p>
 <pre class=" language-bash"><code class="language-bash">        //第零步，创建主线程的handler，这里我称之为主handler
         mainHandler <span class="token operator">=</span> new Handler<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             @Override
@@ -557,7 +557,7 @@
                 <span class="token punctuation">}</span><span class="token punctuation">)</span>.start<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h6 id="2-3-3-注意"><a href="#2-3-3-注意" class="headerlink" title="2.3.3 注意"></a>2.3.3 注意</h6><p>① 如何将一个Thread线程变成一个Looper线程？<br>通过Looper.prepare()可将一个一个Thread线程变成一个Looper线程。</p>
+<h5 id="2-3-3-注意"><a href="#2-3-3-注意" class="headerlink" title="2.3.3 注意"></a>2.3.3 注意</h5><p>① 如何将一个Thread线程变成一个Looper线程？<br>通过Looper.prepare()可将一个一个Thread线程变成一个Looper线程。</p>
 <p>② Looper线程有什么特点？<br>它通过MessageQueue来存放消息，Looper.loop()进行消息轮询。</p>
 <p>③ 可以在子线程直接new一个Handler吗？不行的话要怎么做？<br>因为子线程的Looper需要手动去创建，所以不可以直接new。<br>要new一个Handler的话可以这样做：</p>
 <pre class=" language-bash"><code class="language-bash">new Thread<span class="token punctuation">(</span>new Runnable<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -576,8 +576,8 @@
 <blockquote>
 <p>在<strong>ActivityThread</strong>里调用了 <strong>Looper.prepareMainLooper()</strong>方法创建了主线程的 Looper ，并且调用了 loop() 方法，所以我们就可以直接在主线程使用 Handler 了</p>
 </blockquote>
-<h5 id="2-4-IntentService"><a href="#2-4-IntentService" class="headerlink" title="2.4 IntentService"></a>2.4 IntentService</h5><h6 id="2-4-1-前言"><a href="#2-4-1-前言" class="headerlink" title="2.4.1 前言"></a>2.4.1 前言</h6><p>不同于线程，它是服务，优先级比线程高，更不容易被系统杀死，因此较适合执行一些高优先级的后台任务；<br>不同于普通服务，它可自动创建子线程来执行后台任务，并且任务执行完毕后会自动退出。</p>
-<h6 id="2-4-2-使用方法"><a href="#2-4-2-使用方法" class="headerlink" title="2.4.2 使用方法"></a>2.4.2 使用方法</h6><pre class=" language-bash"><code class="language-bash">//第一步，自定义服务
+<h4 id="2-4-IntentService"><a href="#2-4-IntentService" class="headerlink" title="2.4 IntentService"></a>2.4 IntentService</h4><h5 id="2-4-1-前言"><a href="#2-4-1-前言" class="headerlink" title="2.4.1 前言"></a>2.4.1 前言</h5><p>不同于线程，它是服务，优先级比线程高，更不容易被系统杀死，因此较适合执行一些高优先级的后台任务；<br>不同于普通服务，它可自动创建子线程来执行后台任务，并且任务执行完毕后会自动退出。</p>
+<h5 id="2-4-2-使用方法"><a href="#2-4-2-使用方法" class="headerlink" title="2.4.2 使用方法"></a>2.4.2 使用方法</h5><pre class=" language-bash"><code class="language-bash">//第一步，自定义服务
 public class MyIntentService extends IntentService <span class="token punctuation">{</span>
 
     public MyIntentService<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -604,25 +604,25 @@ public class MyIntentService extends IntentService <span class="token punctuatio
 //第三步，启动服务<span class="token punctuation">(</span>在activity中<span class="token punctuation">)</span>
 Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>MainActivity.this,MyIntentService.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
 startService<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h6 id="2-4-3-注意"><a href="#2-4-3-注意" class="headerlink" title="2.4.3 注意"></a>2.4.3 注意</h6><p>① IntentService与Activity间通信：<br>Activity传值给IntentService：Intent、EventBus等<br>IntentService传值给Activity：广播、EventBus等（回调我试过了，竟然不行！）</p>
+<h5 id="2-4-3-注意"><a href="#2-4-3-注意" class="headerlink" title="2.4.3 注意"></a>2.4.3 注意</h5><p>① IntentService与Activity间通信：<br>Activity传值给IntentService：Intent、EventBus等<br>IntentService传值给Activity：广播、EventBus等（回调我试过了，竟然不行！）</p>
 <p>② 为何不用bindService方式启动IntentService？<br>IntentService的工作原理是，在IntentService的onCreate里创建一个HandlerThread，并利用其内部的Looper实例化一个ServiceHandler对象；而这个ServiceHandler用于处理消息的handleMessage方法会去调用IntentService的onHandleIntent方法，这也是为什么可在该方法中去处理后台任务的原因。当有Intent任务请求时会把Intent封装成Message，然后ServiceHandler会把消息发送出去，而发送消息是在onStartCommand中完成的，只能通过startService方法才可走该生命周期方法，所以不能用bindService方式启动IntentService。</p>
 <h3 id="三、服务的生命周期"><a href="#三、服务的生命周期" class="headerlink" title="三、服务的生命周期"></a>三、服务的生命周期</h3><p><img src="https://upload-images.jianshu.io/upload_images/15623160-5d615e1f533e4b2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h5 id="3-1-通过startService方式启动服务"><a href="#3-1-通过startService方式启动服务" class="headerlink" title="3.1 通过startService方式启动服务"></a>3.1 通过startService方式启动服务</h5><ul>
+<h4 id="3-1-通过startService方式启动服务"><a href="#3-1-通过startService方式启动服务" class="headerlink" title="3.1 通过startService方式启动服务"></a>3.1 通过startService方式启动服务</h4><ul>
 <li>生命周期：onCreate -&gt; onStartCommand -&gt; onDestroy</li>
 <li>通过stopService或者stopSelf方法停止服务。</li>
 <li>一旦服务开启就跟调用者(开启者)没有任何关系了。</li>
 <li>开启者退出了，开启者挂了，服务还在后台长期的运行。</li>
 <li>开启者不能调用服务里面的方法。</li>
 </ul>
-<h5 id="3-2-通过bindService方式启动服务"><a href="#3-2-通过bindService方式启动服务" class="headerlink" title="3.2 通过bindService方式启动服务"></a>3.2 通过bindService方式启动服务</h5><ul>
+<h4 id="3-2-通过bindService方式启动服务"><a href="#3-2-通过bindService方式启动服务" class="headerlink" title="3.2 通过bindService方式启动服务"></a>3.2 通过bindService方式启动服务</h4><ul>
 <li>生命周期：onCreate -&gt; onBind -&gt; onUnBind -&gt; onDestroy</li>
 <li>通过unbindService方法停止服务。</li>
 <li>该方式开启服务，绑定服务，调用者挂了，服务也会跟着挂掉。</li>
 <li>绑定者可以调用服务里面的方法。</li>
 <li>常用于Service和Activity间通信。</li>
 </ul>
-<h5 id="3-3-注意"><a href="#3-3-注意" class="headerlink" title="3.3 注意"></a>3.3 注意</h5><p>① 当服务在启动之前还没有创建过，onCreate方法会先执行，否则不会再执行。<br>② 一个Activity先start一个Service之后，再bind时会回调什么方法？此时如何才能回调Service的destroy方法呢？<br>只会回调onBind方法。这种情况下要同时调用stopService和unbindService方法。</p>
-<h3 id="四、服务的基本用法"><a href="#四、服务的基本用法" class="headerlink" title="四、服务的基本用法"></a>四、服务的基本用法</h3><h5 id="4-1-startService方式"><a href="#4-1-startService方式" class="headerlink" title="4.1 startService方式"></a>4.1 startService方式</h5><pre class=" language-bash"><code class="language-bash">//第一步，自定义类继承Service,必须重写onBind方法
+<h4 id="3-3-注意"><a href="#3-3-注意" class="headerlink" title="3.3 注意"></a>3.3 注意</h4><p>① 当服务在启动之前还没有创建过，onCreate方法会先执行，否则不会再执行。<br>② 一个Activity先start一个Service之后，再bind时会回调什么方法？此时如何才能回调Service的destroy方法呢？<br>只会回调onBind方法。这种情况下要同时调用stopService和unbindService方法。</p>
+<h3 id="四、服务的基本用法"><a href="#四、服务的基本用法" class="headerlink" title="四、服务的基本用法"></a>四、服务的基本用法</h3><h4 id="4-1-startService方式"><a href="#4-1-startService方式" class="headerlink" title="4.1 startService方式"></a>4.1 startService方式</h4><pre class=" language-bash"><code class="language-bash">//第一步，自定义类继承Service,必须重写onBind方法
 public class MyService extends Service <span class="token punctuation">{</span>
 
     private static final String TAG <span class="token operator">=</span> <span class="token string">"MyService"</span><span class="token punctuation">;</span>
@@ -664,7 +664,7 @@ startService<span class="token punctuation">(</span>intent<span class="token pun
 //停止服务
 Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>Main3Activity.this,MyService.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
 stopService<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h5 id="4-2-bindService方式-也是service与activity通信的方式"><a href="#4-2-bindService方式-也是service与activity通信的方式" class="headerlink" title="4.2 bindService方式(也是service与activity通信的方式)"></a>4.2 bindService方式(也是service与activity通信的方式)</h5><p>整体思路：<br>首先，自定义类继承Binder，按照自己的业务逻辑写相应的方法供activity调用。<br>然后，自定义类继承Service，在onBind方法中返回自定义的Binder。<br>接着，实例化ServiceConnection对象，重写onServiceConnected和onServiceDisconnected方法。<br>最后，bindService绑定服务即可。</p>
+<h4 id="4-2-bindService方式-也是service与activity通信的方式"><a href="#4-2-bindService方式-也是service与activity通信的方式" class="headerlink" title="4.2 bindService方式(也是service与activity通信的方式)"></a>4.2 bindService方式(也是service与activity通信的方式)</h4><p>整体思路：<br>首先，自定义类继承Binder，按照自己的业务逻辑写相应的方法供activity调用。<br>然后，自定义类继承Service，在onBind方法中返回自定义的Binder。<br>接着，实例化ServiceConnection对象，重写onServiceConnected和onServiceDisconnected方法。<br>最后，bindService绑定服务即可。</p>
 <pre class=" language-bash"><code class="language-bash">public class MyService extends Service <span class="token punctuation">{</span>
 
     private static final String TAG <span class="token operator">=</span> <span class="token string">"MyService"</span><span class="token punctuation">;</span>
@@ -756,8 +756,8 @@ stopService<span class="token punctuation">(</span>intent<span class="token punc
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<h3 id="五、前台服务"><a href="#五、前台服务" class="headerlink" title="五、前台服务"></a>五、前台服务</h3><h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>服务几乎都是在后台运行的，系统优先级还是比较低的，当系统出现内存不足时就有可能会回收掉正在后台运行的服务。此时为了防止服务被回收掉，就可以使用前台服务。前台服务和普通服务最大的区别就在于，它会一直有一个正在运行的图标在系统状态栏显示，下拉状态栏可以看到更加详细的信息，非常类似于通知的效果。</p>
-<h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><pre class=" language-bash"><code class="language-bash">public class MyService extends Service <span class="token punctuation">{</span>
+<h3 id="五、前台服务"><a href="#五、前台服务" class="headerlink" title="五、前台服务"></a>五、前台服务</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>服务几乎都是在后台运行的，系统优先级还是比较低的，当系统出现内存不足时就有可能会回收掉正在后台运行的服务。此时为了防止服务被回收掉，就可以使用前台服务。前台服务和普通服务最大的区别就在于，它会一直有一个正在运行的图标在系统状态栏显示，下拉状态栏可以看到更加详细的信息，非常类似于通知的效果。</p>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><pre class=" language-bash"><code class="language-bash">public class MyService extends Service <span class="token punctuation">{</span>
 
     <span class="token punctuation">..</span>.
 
@@ -776,7 +776,7 @@ stopService<span class="token punctuation">(</span>intent<span class="token punc
                 .build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         startForeground<span class="token punctuation">(</span>1,notification<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
-<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p>现在Android对于通知栏已经做了修改，我们还需要去做版本适配，在这里我就不展开来讲了，贴一个郭神的文章吧<a href="https://blog.csdn.net/guolin_blog/article/details/79854070" target="_blank" rel="noopener">Android通知栏微技巧，8.0系统中通知栏的适配</a></p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>现在Android对于通知栏已经做了修改，我们还需要去做版本适配，在这里我就不展开来讲了，贴一个郭神的文章吧<a href="https://blog.csdn.net/guolin_blog/article/details/79854070" target="_blank" rel="noopener">Android通知栏微技巧，8.0系统中通知栏的适配</a></p>
 <h3 id="六、保证service不被杀死的方法"><a href="#六、保证service不被杀死的方法" class="headerlink" title="六、保证service不被杀死的方法"></a>六、保证service不被杀死的方法</h3><ul>
 <li>在Service的onStartCommand方法中设置flages值为START_STICKY，使得Service被杀死后尝试再次启动Service。</li>
 <li>提升Service优先级，比如设置为一个前台服务。</li>
@@ -1038,9 +1038,9 @@ stopService<span class="token punctuation">(</span>intent<span class="token punc
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="四大组件之ContentProvider">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Android学习（五）—— 四大组件之Content Provider">
                         
-                        <span class="card-title">四大组件之ContentProvider</span>
+                        <span class="card-title">Android学习（五）—— 四大组件之Content Provider</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1087,9 +1087,9 @@ stopService<span class="token punctuation">(</span>intent<span class="token punc
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Receiver">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Android学习（三）—— 四大组件之Boradcast Receiver">
                         
-                        <span class="card-title">Receiver</span>
+                        <span class="card-title">Android学习（三）—— 四大组件之Boradcast Receiver</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
