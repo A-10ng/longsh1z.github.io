@@ -20,6 +20,8 @@
       
         <tags>
             
+            <tag> Android </tag>
+            
             <tag> Content Provider </tag>
             
         </tags>
@@ -44,6 +46,8 @@
       
       
         <tags>
+            
+            <tag> Android </tag>
             
             <tag> Service </tag>
             
@@ -70,6 +74,8 @@
       
         <tags>
             
+            <tag> Android </tag>
+            
             <tag> Broadcast Receiver </tag>
             
         </tags>
@@ -95,6 +101,8 @@
       
         <tags>
             
+            <tag> Android </tag>
+            
             <tag> Activity </tag>
             
         </tags>
@@ -119,6 +127,8 @@
       
       
         <tags>
+            
+            <tag> Android </tag>
             
             <tag> Android入门 </tag>
             
