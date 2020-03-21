@@ -642,70 +642,95 @@ try<span class="token punctuation">{</span>
 </blockquote>
 <ul>
 <li><strong>普通权限</strong><br>它指的是那些不会直接威胁到用户安全和隐私的权限，对于这部分权限，系统会自动帮我们授权，而不需要用户再去手动授权了。除了危险权限之外，剩余的都是普通权限。</li>
-<li><strong>危险权限</strong><br>它表示那些可能会威胁到用户安全和隐私的权限，对于这部分权限，需要用户手动去授权才可以。<br>该部分权限如下（9组24个权限）：<pre class=" language-bash"><code class="language-bash">group:android.permission-group.CONTACTS
+<li><strong>危险权限</strong><br>它表示那些可能会威胁到用户安全和隐私的权限，对于这部分权限，需要用户手动去授权才可以。<br>该部分权限如下（9组24个权限）：</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">group:android.permission-group.CONTACTS
 permission:android.permission.WRITE_CONTACTS
 permission:android.permission.GET_ACCOUNTS
 permission:android.permission.READ_CONTACTS
-</code></pre>
-</li>
-</ul>
-<p>group:android.permission-group.PHONE<br>permission:android.permission.READ_CALL_LOG<br>permission:android.permission.READ_PHONE_STATE<br>permission:android.permission.CALL_PHONE<br>permission:android.permission.WRITE_CALL_LOG<br>permission:android.permission.USE_SIP<br>permission:android.permission.PROCESS_OUTGOING_CALLS<br>permission:com.android.voicemail.permission.ADD_VOICEMAIL</p>
-<p>group:android.permission-group.CALENDAR<br>permission:android.permission.READ_CALENDAR<br>permission:android.permission.WRITE_CALENDAR</p>
-<p>group:android.permission-group.CAMERA<br>permission:android.permission.CAMERA</p>
-<p>group:android.permission-group.SENSORS<br>permission:android.permission.BODY_SENSORS</p>
-<p>group:android.permission-group.LOCATION<br>permission:android.permission.ACCESS_FINE_LOCATION<br>permission:android.permission.ACCESS_COARSE_LOCATION</p>
-<p>group:android.permission-group.STORAGE<br>permission:android.permission.READ_EXTERNAL_STORAGE<br>permission:android.permission.WRITE_EXTERNAL_STORAGE</p>
-<p>group:android.permission-group.MICROPHONE<br>permission:android.permission.RECORD_AUDIO</p>
-<p>group:android.permission-group.SMS<br>permission:android.permission.READ_SMS<br>permission:android.permission.RECEIVE_WAP_PUSH<br>permission:android.permission.RECEIVE_MMS<br>permission:android.permission.RECEIVE_SMS<br>permission:android.permission.SEND_SMS</p>
-<pre><code>
-#### 3.3 注意
-上述的每一个危险权限都属于对应的一个权限组，我们在进行运行时权限处理时使用的是权限名，但是用户一旦授权了，那么该权限所在权限组中的所有其他权限也会同时被授权。
-#### 3.4 小案例
-比如我们点击按钮之后要实现打电话的功能，因为电话权限属于危险权限，所以我们在6.0以上的手机运行时需要先询问用户是否同意授权。
-```bash
-@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main6);
 
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+group:android.permission-group.PHONE
+permission:android.permission.READ_CALL_LOG
+permission:android.permission.READ_PHONE_STATE
+permission:android.permission.CALL_PHONE
+permission:android.permission.WRITE_CALL_LOG
+permission:android.permission.USE_SIP
+permission:android.permission.PROCESS_OUTGOING_CALLS
+permission:com.android.voicemail.permission.ADD_VOICEMAIL
+
+group:android.permission-group.CALENDAR
+permission:android.permission.READ_CALENDAR
+permission:android.permission.WRITE_CALENDAR
+
+group:android.permission-group.CAMERA
+permission:android.permission.CAMERA
+
+group:android.permission-group.SENSORS
+permission:android.permission.BODY_SENSORS
+
+group:android.permission-group.LOCATION
+permission:android.permission.ACCESS_FINE_LOCATION
+permission:android.permission.ACCESS_COARSE_LOCATION
+
+group:android.permission-group.STORAGE
+permission:android.permission.READ_EXTERNAL_STORAGE
+permission:android.permission.WRITE_EXTERNAL_STORAGE
+
+group:android.permission-group.MICROPHONE
+permission:android.permission.RECORD_AUDIO
+
+group:android.permission-group.SMS
+permission:android.permission.READ_SMS
+permission:android.permission.RECEIVE_WAP_PUSH
+permission:android.permission.RECEIVE_MMS
+permission:android.permission.RECEIVE_SMS
+permission:android.permission.SEND_SMS</code></pre>
+<h4 id="3-3-注意"><a href="#3-3-注意" class="headerlink" title="3.3 注意"></a>3.3 注意</h4><p>上述的每一个危险权限都属于对应的一个权限组，我们在进行运行时权限处理时使用的是权限名，但是用户一旦授权了，那么该权限所在权限组中的所有其他权限也会同时被授权。</p>
+<h4 id="3-4-小案例"><a href="#3-4-小案例" class="headerlink" title="3.4 小案例"></a>3.4 小案例</h4><p>比如我们点击按钮之后要实现打电话的功能，因为电话权限属于危险权限，所以我们在6.0以上的手机运行时需要先询问用户是否同意授权。</p>
+<pre class=" language-bash"><code class="language-bash">@Override
+    protected void onCreate<span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super.onCreate<span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        setContentView<span class="token punctuation">(</span>R.layout.activity_main6<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        button <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.button<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        button.setOnClickListener<span class="token punctuation">(</span>new View.OnClickListener<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             @Override
-            public void onClick(View v) {
+            public void onClick<span class="token punctuation">(</span>View v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 //先检查打电话权限是否已经被授权
                 //第一个参数是context，第二个是需要授权的权限
-                if (ContextCompat.checkSelfPermission(Main6Activity.this, Manifest.permission.CALL_PHONE) 
-                                                      != PackageManager.PERMISSION_GRANTED){
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>ContextCompat.checkSelfPermission<span class="token punctuation">(</span>Main6Activity.this, Manifest.permission.CALL_PHONE<span class="token punctuation">)</span> 
+                                                      <span class="token operator">!=</span> PackageManager.PERMISSION_GRANTED<span class="token punctuation">)</span><span class="token punctuation">{</span>
                     //如果该权限还未授权，系统会弹出一个申请权限的对话框
                     //不管用户选择哪项，都会调用下面重写的onRequestPermissionsResult方法
-                    ActivityCompat.requestPermissions(Main6Activity.this,
-                                                      new String[]{ Manifest.permission.CALL_PHONE },1);
-                }else {
-                    call();
-                }
-            }
-        });
-    }
+                    ActivityCompat.requestPermissions<span class="token punctuation">(</span>Main6Activity.this,
+                                                      new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span> Manifest.permission.CALL_PHONE <span class="token punctuation">}</span>,1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>else <span class="token punctuation">{</span>
+                    call<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    private void call(){
+    private void call<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         //打电话
-        Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse("tel:10086"));
-        startActivity(intent);
-    }
+        Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>Intent.ACTION_CALL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        intent.setData<span class="token punctuation">(</span>Uri.parse<span class="token punctuation">(</span><span class="token string">"tel:10086"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        startActivity<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case 1:
-                if (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    call();
-                }else {
-                    Toast.makeText(this, "您已拒绝该权限，请前往设置开启！", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
-    }</code></pre><h3 id="四、访问其他程序中的数据"><a href="#四、访问其他程序中的数据" class="headerlink" title="四、访问其他程序中的数据"></a>四、访问其他程序中的数据</h3><h4 id="4-1-前言"><a href="#4-1-前言" class="headerlink" title="4.1 前言"></a>4.1 前言</h4><p>Android系统中自带的电话簿、短信、媒体库等程序都提供了这样的内容提供器供外界访问。</p>
+    public void onRequestPermissionsResult<span class="token punctuation">(</span>int requestCode, @NonNull String<span class="token punctuation">[</span><span class="token punctuation">]</span> permissions, @NonNull int<span class="token punctuation">[</span><span class="token punctuation">]</span> grantResults<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        switch <span class="token punctuation">(</span>requestCode<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> 1:
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>grantResults.length <span class="token operator">></span> 0 <span class="token operator">&amp;&amp;</span> grantResults<span class="token punctuation">[</span>0<span class="token punctuation">]</span> <span class="token operator">==</span> PackageManager.PERMISSION_GRANTED<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    call<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>else <span class="token punctuation">{</span>
+                    Toast.makeText<span class="token punctuation">(</span>this, <span class="token string">"您已拒绝该权限，请前往设置开启！"</span>, Toast.LENGTH_SHORT<span class="token punctuation">)</span>.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
+<h3 id="四、访问其他程序中的数据"><a href="#四、访问其他程序中的数据" class="headerlink" title="四、访问其他程序中的数据"></a>四、访问其他程序中的数据</h3><h4 id="4-1-前言"><a href="#4-1-前言" class="headerlink" title="4.1 前言"></a>4.1 前言</h4><p>Android系统中自带的电话簿、短信、媒体库等程序都提供了这样的内容提供器供外界访问。</p>
 <h4 id="4-2-ContentResolver"><a href="#4-2-ContentResolver" class="headerlink" title="4.2 ContentResolver"></a>4.2 ContentResolver</h4><ul>
 <li>每个应用程序要想访问内容提供器中的数据，就一定要借助ContentResolver类，可以通过Context中的<strong>getContentResolver</strong>方法来获取。ContentResolver类提供了一系列方法用于对数据进行CRUD操作，<strong>insert</strong>方法用于添加数据，<strong>update</strong>方法用于更新数据，<strong>delete</strong>方法用于删除数据，<strong>query</strong>方法用于查询数据。它和SQLiteDatabase很像，只不过它不接收表名，而是换成了Uri参数。</li>
 <li>Uri包括两部分：authority和path。authority命名为 <strong>包名.provider</strong>，path命名为 <strong>表名</strong> ，所以一个标准的Uri可以为<strong>content://com.example.testspecial.provider/table1</strong></li>
@@ -1332,7 +1357,7 @@ getContentResolver<span class="token punctuation">(</span><span class="token pun
                             
 本文目录结构：一、服务简介二、多线程编程三、服务的生命周期四、服务的基本用法五、前台服务六、如何保证service不被杀死
 
-一、服务简介定义：服务在Android中的运用主要是实现任务在后台的运行，特别是那些不需要和用户交互而且还要求长
+一、服务简介定义服务在Android中的运用主要是实现任务在后台的运行，特别是那些不需要和用户交互而且还要求长期
                         
                     </div>
                     <div class="publish-info">
@@ -1503,7 +1528,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">14.9k</span>&nbsp;字
+                class="white-color">15k</span>&nbsp;字
             
             
             

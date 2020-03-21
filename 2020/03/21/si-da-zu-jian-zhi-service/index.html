@@ -406,8 +406,8 @@
                 <blockquote>
 <p>本文目录结构：<br>一、服务简介<br>二、多线程编程<br>三、服务的生命周期<br>四、服务的基本用法<br>五、前台服务<br>六、如何保证service不被杀死</p>
 </blockquote>
-<h3 id="一、服务简介"><a href="#一、服务简介" class="headerlink" title="一、服务简介"></a>一、服务简介</h3><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4><p>服务在Android中的运用主要是实现任务在后台的运行，特别是那些不需要和用户交互而且还要求长期运行的任务，比如下载资源。服务的运行不依赖于任何用户界面，即使程序被切换到后台，或者用户打开了另外一个应用程序，服务仍然能够保持正常运行。</p>
-<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>①服务并不是运行在一个独立的进程中的，而是依赖于创建服务时所在的应用进程。所以当该进程被杀掉时，所有依赖于该进程的服务也会停止运行。<br>②服务并不会自动开启线程，所有代码都是运行在主线程当中的。</p>
+<h3 id="一、服务简介"><a href="#一、服务简介" class="headerlink" title="一、服务简介"></a>一、服务简介</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>服务在Android中的运用主要是实现任务在后台的运行，特别是那些不需要和用户交互而且还要求长期运行的任务，比如下载资源。服务的运行不依赖于任何用户界面，即使程序被切换到后台，或者用户打开了另外一个应用程序，服务仍然能够保持正常运行。</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>①服务并不是运行在一个独立的进程中的，而是依赖于创建服务时所在的应用进程。所以当该进程被杀掉时，所有依赖于该进程的服务也会停止运行。<br>②服务并不会自动开启线程，所有代码都是运行在主线程当中的。</p>
 <h3 id="二、多线程编程"><a href="#二、多线程编程" class="headerlink" title="二、多线程编程"></a>二、多线程编程</h3><p>Android中的多线程主要有Thread与Handler的结合使用、AsyncTask、HandlerThread以及IntentService四种方式</p>
 <h4 id="2-1-Thread与Handler的结合使用"><a href="#2-1-Thread与Handler的结合使用" class="headerlink" title="2.1 Thread与Handler的结合使用"></a>2.1 Thread与Handler的结合使用</h4><h5 id="2-1-1-创建方式"><a href="#2-1-1-创建方式" class="headerlink" title="2.1.1 创建方式"></a>2.1.1 创建方式</h5><p>Thread的创建方法我就不多讲了，在我的文章<a href="https://www.jianshu.com/p/652e54187fd6" target="_blank" rel="noopener">《那些你所不知道的Java小知识（持续更新）》</a>的第3点中可以看到。因为系统不建议在子线程中更新UI，但是有些时候我们必须在子线程里去执行一些耗时任务，然后根据任务的执行结果来更新相应的控件。因此Android为我们提供了一个<strong>异步消息处理机制</strong>。（至于为什么不建议，大家可以去看一下鸿洋的<a href="https://mp.weixin.qq.com/s/ZBHpbOj6cojvUCVZ5fAYBA" target="_blank" rel="noopener">《Android中子线程真的不能更新UI吗？》</a>，讲解的很详细）</p>
 <h5 id="2-1-2-异步消息处理机制"><a href="#2-1-2-异步消息处理机制" class="headerlink" title="2.1.2 异步消息处理机制"></a>2.1.2 异步消息处理机制</h5><p>该机制主要由四个部分组成：Message，Handler，MessageQueue和Looper。</p>
@@ -490,8 +490,7 @@
 <p>如果想要启动这个后台任务，只需要执行new MyTask().execute();即可。</p>
 </li>
 </ul>
-<p>#####2.2.3 注意</p>
-<p>① 不要直接调用onPreExecute()、doInBackground()、onProgressUpdate()、onPostExecute()和onCancelled()方法。<br>② 一个异步对象只能调用过一次execute方法。</p>
+<h5 id="2-2-3-注意"><a href="#2-2-3-注意" class="headerlink" title="2.2.3 注意"></a>2.2.3 注意</h5><p>① 不要直接调用onPreExecute()、doInBackground()、onProgressUpdate()、onPostExecute()和onCancelled()方法。<br>② 一个异步对象只能调用过一次execute方法。</p>
 <h4 id="2-3-HandlerThread"><a href="#2-3-HandlerThread" class="headerlink" title="2.3 HandlerThread"></a>2.3 HandlerThread</h4><h5 id="2-3-1-前言"><a href="#2-3-1-前言" class="headerlink" title="2.3.1 前言"></a>2.3.1 前言</h5><p>HandlerThread是一种具有消息循环的线程，其内部可使用Handler。通俗来讲，与子线程绑定的handler发送出去的消息，是在子线程当中执行的。</p>
 <h5 id="2-3-2-使用方法"><a href="#2-3-2-使用方法" class="headerlink" title="2.3.2 使用方法"></a>2.3.2 使用方法</h5><p>整体思路：将子线程与workHandler绑定之后，在要进行耗时操作的地方通过workHandler发送消息，然后在通过mainHandler发送消息进行主线程的UI更新。</p>
 <pre class=" language-bash"><code class="language-bash">        //第零步，创建主线程的handler，这里我称之为主handler
@@ -776,7 +775,7 @@ stopService<span class="token punctuation">(</span>intent<span class="token punc
                 .build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         startForeground<span class="token punctuation">(</span>1,notification<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span></code></pre>
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>现在Android对于通知栏已经做了修改，我们还需要去做版本适配，在这里我就不展开来讲了，贴一个郭神的文章吧<a href="https://blog.csdn.net/guolin_blog/article/details/79854070" target="_blank" rel="noopener">Android通知栏微技巧，8.0系统中通知栏的适配</a></p>
+<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><p>现在Android对于通知栏已经做了修改，我们还需要去做版本适配，在这里我就不展开来讲了，贴一个郭神的文章吧<a href="https://blog.csdn.net/guolin_blog/article/details/79854070" target="_blank" rel="noopener">Android通知栏微技巧，8.0系统中通知栏的适配</a></p>
 <h3 id="六、保证service不被杀死的方法"><a href="#六、保证service不被杀死的方法" class="headerlink" title="六、保证service不被杀死的方法"></a>六、保证service不被杀死的方法</h3><ul>
 <li>在Service的onStartCommand方法中设置flages值为START_STICKY，使得Service被杀死后尝试再次启动Service。</li>
 <li>提升Service优先级，比如设置为一个前台服务。</li>
@@ -1269,7 +1268,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">14.9k</span>&nbsp;字
+                class="white-color">15k</span>&nbsp;字
             
             
             
