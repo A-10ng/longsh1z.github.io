@@ -1,0 +1,1641 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="四大组件之ContentProvider, LongSh1z">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>四大组件之ContentProvider | LongSh1z</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">LongSh1z</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">LongSh1z</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">四大组件之ContentProvider</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Content-Provider/">
+                                <span class="chip bg-color">Content Provider</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-03-21
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.4k
+                </div>
+                
+
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>本文目录结构：<br>一、内容提供器简介<br>二、数据存储方案<br>三、运行时权限<br>四、访问其他程序中的数据<br>五、创建自己的内容提供器</p>
+</blockquote>
+<h3 id="一、内容提供器简介"><a href="#一、内容提供器简介" class="headerlink" title="一、内容提供器简介"></a>一、内容提供器简介</h3><ul>
+<li>作为四大组件之一，Content Provider主要用于存储数据和在不同的应用程序之间共享数据。和文件存储、SharedPreferences存储以及SQLite数据库存储不同，Content Provider可以选择只对哪一部分的数据进行共享，从而保证我们的隐私数据不会存在被泄漏的风险，前者的数据只能在本应用程序中使用。（因为文件存储方式存下的文件是在本应用目录下的，其他应用不知道该应用下这个文件的目录，所以说只能在本应用中使用，当然了你知道的话也是可以使用的）</li>
+<li>内容提供器的用法一般有两种，一种是使用别人为我们提供的内容提供器，本文第四大点会讲到；另一种则是我们创建自己的内容提供器，提供给别人使用。本文第五大点会讲到。</li>
+</ul>
+<h3 id="二、数据存储方案"><a href="#二、数据存储方案" class="headerlink" title="二、数据存储方案"></a>二、数据存储方案</h3><h5 id="2-1-文件存储"><a href="#2-1-文件存储" class="headerlink" title="2.1 文件存储"></a>2.1 文件存储</h5><h6 id="2-1-1-前言"><a href="#2-1-1-前言" class="headerlink" title="2.1.1 前言"></a>2.1.1 前言</h6><p>文件存储是Android中最基本的一种数据存储方式，它不对存储的内容进行任何的格式化处理。因此，它比较适合用于存储一些简单的文本数据或二进制数据。<br>对于存储操作，Context类提供了一个openFileOutput方法。对于读取操作，Context类提供了一个openFileInput方法。两个方法返回的类型分别是FileOutStream和FileInputStream。</p>
+<h6 id="2-1-2-使用方法"><a href="#2-1-2-使用方法" class="headerlink" title="2.1.2 使用方法"></a>2.1.2 使用方法</h6><p>这里结合一个小案例说明：点击“保存”按钮将输入框的内容存储到文件中，点击“读取”按钮则读取文件中的内容</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15623160-13eb83f8eb0325c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre class=" language-bash"><code class="language-bash">//保存数据到文件中
+     private void saveFile<span class="token punctuation">(</span>String content<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        FileOutputStream fos <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        BufferedWriter bw <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        try <span class="token punctuation">{</span>
+            //第一参数是指定文件的名称，这里的名字不可以包含路径，因为所有文件都是存储在/data/data/<span class="token operator">&lt;</span>packagename<span class="token operator">></span>/files/目录下的
+            //第二个参数是文件的操作模式，主要有两种模式可以选：MODE_PRIVATE（默认）和MODE_APPEND。
+            //前者表示文件名字相同时会覆盖掉之前的内容，而后者表示会在后面追加内容
+            fos <span class="token operator">=</span> openFileOutput<span class="token punctuation">(</span><span class="token string">"myFile"</span>, Context.MODE_APPEND<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            bw <span class="token operator">=</span> new BufferedWriter<span class="token punctuation">(</span>new OutputStreamWriter<span class="token punctuation">(</span>fos<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            bw.write<span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>IOException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> finally <span class="token punctuation">{</span>
+            try <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>bw <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    bw.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>IOException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+//从文件中读取数据
+    private String readFile<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        FileInputStream fis <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        BufferedReader br <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        StringBuilder builder <span class="token operator">=</span> new StringBuilder<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        try <span class="token punctuation">{</span>
+            //只接收一个参数，即要打开的文件名
+            fis <span class="token operator">=</span> openFileInput<span class="token punctuation">(</span><span class="token string">"myFile"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            br <span class="token operator">=</span> new BufferedReader<span class="token punctuation">(</span>new InputStreamReader<span class="token punctuation">(</span>fis<span class="token punctuation">))</span><span class="token punctuation">;</span>
+            String flag<span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token variable"><span class="token punctuation">((</span>flag <span class="token operator">=</span> br.readLine<span class="token punctuation">(</span><span class="token punctuation">))</span></span> <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                builder.append<span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>FileNotFoundException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>IOException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>finally <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>br <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                try <span class="token punctuation">{</span>
+                    br.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> catch <span class="token punctuation">(</span>IOException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> builder.toString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h5 id="2-2-SharedPreferences存储"><a href="#2-2-SharedPreferences存储" class="headerlink" title="2.2 SharedPreferences存储"></a>2.2 SharedPreferences存储</h5><h6 id="2-2-1-前言"><a href="#2-2-1-前言" class="headerlink" title="2.2.1 前言"></a>2.2.1 前言</h6><p>与文件存储不同，SharedPreferences是用键值对的形式存储数据的。也就是说，当我们保存一条数据的时候，需要给这条数据提供一个对应的键，取的时候也是根据这个键取出来。</p>
+<h6 id="2-2-2-将数据存储到SharedPreferences中"><a href="#2-2-2-将数据存储到SharedPreferences中" class="headerlink" title="2.2.2 将数据存储到SharedPreferences中"></a>2.2.2 将数据存储到SharedPreferences中</h6><p>要想用SharedPreferences存储数据，我们需要先获取SharedPreferences对象。Android主要提供了三种方法来得到该对象。</p>
+<ul>
+<li><strong>Context类中的getSharedPreferences()方法</strong><br>该方法接收两个参数，第一个是指定SharedPreferences文件的名称，该文件都是存放在/data/data/<package name="">/shared_prefs/目录下的。第二个是指定操作模式，目前只有MODE_PRIVATE这一种该模式可选，它也是默认的，与传入0效果是一样的。</package></li>
+<li><strong>Activity类中的getPreferences()方法</strong><br>该方法与上一个方法类似，不过它只接收一个参数，即操作模式。SharedPreferences文件的名称为当前活动的类名。</li>
+<li><strong>PreferenceManager类中的getDefaultSharedPreferences()方法</strong><br>这是一个静态方法，它接收一个Context参数，并自动使用当前应用程序的包名作为前缀来命名。</li>
+</ul>
+<p>拿到SharedPreferences对象之后就可以向SharedPreferences文件存储数据了，步骤如下：<br>① 首先，调用SharedPreferences对象的edit方法来获取一个SharedPreferences.Editor对象。<br>② 然后，向SharedPreferences.Editor对象添加数据，比如添加一个int型数据则可以用putInt()方法，字符串则是putString()方法，以此类推。<br>③ 最后，调用apply或者commit方法将数据提交即可。</p>
+<pre class=" language-bash"><code class="language-bash">SharedPreferences.Editor editor <span class="token operator">=</span> getSharedPreferences<span class="token punctuation">(</span><span class="token string">"myShared"</span>,MODE_PRIVATE<span class="token punctuation">)</span>.edit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+editor.putString<span class="token punctuation">(</span><span class="token string">"content"</span>,content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+editor.putInt<span class="token punctuation">(</span><span class="token string">"id"</span>,2016100341<span class="token punctuation">)</span><span class="token punctuation">;</span>
+editor.putBoolean<span class="token punctuation">(</span><span class="token string">"flag"</span>,true<span class="token punctuation">)</span><span class="token punctuation">;</span>
+editor.apply<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h6 id="2-2-3-从SharedPreferences中读取数据"><a href="#2-2-3-从SharedPreferences中读取数据" class="headerlink" title="2.2.3 从SharedPreferences中读取数据"></a>2.2.3 从SharedPreferences中读取数据</h6><pre class=" language-bash"><code class="language-bash">SharedPreferences preferences <span class="token operator">=</span> getSharedPreferences<span class="token punctuation">(</span><span class="token string">"myShared"</span>,MODE_PRIVATE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//该方法的第一个参数是存数据时写的键值，第二个参数是获取不到这个键对应的值时的默认返回的内容。
+String result <span class="token operator">=</span> preferences.getString<span class="token punctuation">(</span><span class="token string">"content"</span>,<span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+int num <span class="token operator">=</span> preferences.getInt<span class="token punctuation">(</span><span class="token string">"id"</span>,0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+boolean flag <span class="token operator">=</span> preferences.getBoolean<span class="token punctuation">(</span><span class="token string">"flag"</span>,true<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h6 id="2-2-4-注意"><a href="#2-2-4-注意" class="headerlink" title="2.2.4 注意"></a>2.2.4 注意</h6><p>（1）细心的朋友们可能会注意到提交数据的时候不是有两种该方法提交吗？那它们有什么区别呢？<br>① apply无返回值，commit有（boolean）<br>② apply的话是将修改原子提交到内存，而后异步真正提交到硬件，commit是同步提交到硬件，所以相比之下数据量大的时候apply的效率会更高一点。<br>③ apply不会有任何的失败提示。</p>
+<p>（2）当两个Editor在修改preferences时，最后一个调用apply或者commit的才会生效。<br>源码注释：<br>Note that when two editors are modifying preferences at the same time, the last one to call commit wins.<br>Note that when two editors are modifying preferences at the same time, the last one to call apply wins.</p>
+<h5 id="2-3-SQLite数据库存储"><a href="#2-3-SQLite数据库存储" class="headerlink" title="2.3 SQLite数据库存储"></a>2.3 SQLite数据库存储</h5><h6 id="2-3-1-前言"><a href="#2-3-1-前言" class="headerlink" title="2.3.1 前言"></a>2.3.1 前言</h6><ul>
+<li><p>SQLite是一款轻量级的数据库，运算速度非常快，占用资源很少，通常只需要几百KB的内存就够了，因而非常适合在移动设备上使用。SQLite不仅支持标准的SQL语法，还遵循了数据库的ACID事务。</p>
+</li>
+<li><p><strong>整体思路：</strong><br>首先，自定义类继承<strong>SQLiteOpenHelper</strong>，重写<strong>onCreate</strong>和<strong>onUpgrade</strong>方法。<br>然后，实例化该类，调用<strong>getReadableDatabase</strong>或<strong>getWritableDatabase</strong>方法拿到<strong>SQLiteDatabase</strong>对象，这样就创建完数据库了。<br>接着，通过ContentValues的put，clear等方法将数据放进ContentValues中。<br>最后，SQLiteDatabase对象调用insert、update、delete、query方法做增删查改操作（查询的话则用到cursor）。</p>
+</li>
+<li><p>这是一些初始化信息，下面的这个功能都是在这个的基础上实现的。</p>
+<pre class=" language-bash"><code class="language-bash">public class Main5Activity extends AppCompatActivity implements View.OnClickListener <span class="token punctuation">{</span>
+
+  private Button btn_create,btn_upgrade,btn_insert,
+          btn_delete,btn_select,btn_update<span class="token punctuation">;</span>
+
+  private MySQLiteHelper helper<span class="token punctuation">;</span>
+  private SQLiteDatabase db<span class="token punctuation">;</span>
+
+  @Override
+  protected void onCreate<span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      super.onCreate<span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      setContentView<span class="token punctuation">(</span>R.layout.activity_main5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      helper <span class="token operator">=</span> new MySQLiteHelper<span class="token punctuation">(</span>this,<span class="token string">"BookStore.db"</span>,null,1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      btn_create <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_create<span class="token punctuation">)</span><span class="token punctuation">;</span>//创建数据库
+      btn_upgrade <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_upgrade<span class="token punctuation">)</span><span class="token punctuation">;</span>//升级数据库
+      btn_insert <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_insert<span class="token punctuation">)</span><span class="token punctuation">;</span>//插入数据
+      btn_delete <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_delete<span class="token punctuation">)</span><span class="token punctuation">;</span>//删除数据
+      btn_select <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_select<span class="token punctuation">)</span><span class="token punctuation">;</span>//查询数据
+      btn_update <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_update<span class="token punctuation">)</span><span class="token punctuation">;</span>//更新数据
+
+      btn_create.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      btn_upgrade.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      btn_insert.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      btn_delete.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      btn_select.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      btn_update.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+</li>
+</ul>
+<h6 id="2-3-2-创建数据库"><a href="#2-3-2-创建数据库" class="headerlink" title="2.3.2 创建数据库"></a>2.3.2 创建数据库</h6><pre class=" language-bash"><code class="language-bash">//第一，自定义类继承SQLiteOpenHelper ，重写onCreate和onUpgrade方法
+public class MySQLiteHelper extends SQLiteOpenHelper <span class="token punctuation">{</span>
+
+    private Context mContext<span class="token punctuation">;</span>
+    public static final String CREATE_BOOK <span class="token operator">=</span> <span class="token string">"create table Book ("</span> +
+            <span class="token string">"id integer primary key autoincrement, "</span> +
+            <span class="token string">"author text, "</span> +
+            <span class="token string">"price real, "</span> +
+            <span class="token string">"pages integer, "</span> +
+            <span class="token string">"name text)"</span><span class="token punctuation">;</span>
+
+    public MySQLiteHelper<span class="token punctuation">(</span>Context context,String name,SQLiteDatabase.CursorFactory factory, int version<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super<span class="token punctuation">(</span>context, name, factory, version<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mContext <span class="token operator">=</span> context<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    //该方法用于创建数据库，如果已存在则不会再创建
+    @Override
+    public void onCreate<span class="token punctuation">(</span>SQLiteDatabase db<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        db.execSQL<span class="token punctuation">(</span>CREATE_BOOK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Toast.makeText<span class="token punctuation">(</span>mContext, <span class="token string">"create succeeded"</span>, Toast.LENGTH_SHORT<span class="token punctuation">)</span>.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    public void onUpgrade<span class="token punctuation">(</span>SQLiteDatabase db, int oldVersion, int newVersion<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+//activity里面的点击事件
+<span class="token keyword">case</span> R.id.btn_create:
+      //getWritableDatabase与getReadableDatabase方法的区别在于，当数据库不可写入的时候（如磁盘空间已满），getReadableDatabase方法返回的对象将以只读的方式去打开数据库，而getWritableDatabase方法则将抛出异常
+     db <span class="token operator">=</span> helper.getWritableDatabase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">break</span><span class="token punctuation">;</span></code></pre>
+<h6 id="2-3-3-升级数据库"><a href="#2-3-3-升级数据库" class="headerlink" title="2.3.3 升级数据库"></a>2.3.3 升级数据库</h6><p><img src="https://upload-images.jianshu.io/upload_images/15623160-658fbc1c83c454fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>重新写好MySQLiteHelper之后，只需在new MySQLiteHelper的最后一个参数里面传入一个比之前大的数，再调用getWritableDatabase或getReadableDatabase方法即可升级数据库了。</p>
+<h6 id="2-3-4-增删查改"><a href="#2-3-4-增删查改" class="headerlink" title="2.3.4 增删查改"></a>2.3.4 增删查改</h6><pre class=" language-bash"><code class="language-bash">//增加数据
+<span class="token keyword">case</span> R.id.btn_insert:
+    ContentValues values <span class="token operator">=</span> new ContentValues<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //组装第一条数据
+    values.put<span class="token punctuation">(</span><span class="token string">"name"</span>,<span class="token string">"LongSh1z"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    values.put<span class="token punctuation">(</span><span class="token string">"author"</span>,<span class="token string">"anthony"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    values.put<span class="token punctuation">(</span><span class="token string">"pages"</span>,454<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    values.put<span class="token punctuation">(</span><span class="token string">"price"</span>,16.8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //第一个参数是要插入的表的名称，
+    //第二个用于在未指定添加数据的情况下给某些可为空的列自动赋值NULL，
+    //第三个参数是要插入的数据
+    db.insert<span class="token punctuation">(</span><span class="token string">"Book"</span>,null,values<span class="token punctuation">)</span><span class="token punctuation">;</span> //向数据库插入数据
+    values.clear<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//清空values
+    //组装第二条数据
+    values.put<span class="token punctuation">(</span><span class="token string">"name"</span>,<span class="token string">"haha"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    values.put<span class="token punctuation">(</span><span class="token string">"author"</span>,<span class="token string">"David"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    values.put<span class="token punctuation">(</span><span class="token string">"pages"</span>,65<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    values.put<span class="token punctuation">(</span><span class="token string">"price"</span>,15<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    db.insert<span class="token punctuation">(</span><span class="token string">"Book"</span>,null,values<span class="token punctuation">)</span><span class="token punctuation">;</span> //向数据库插入数据
+<span class="token keyword">break</span><span class="token punctuation">;</span>
+
+//删除数据
+<span class="token keyword">case</span> R.id.btn_delete:
+    //第一个参数是表名
+    //第二和三个是要删除数据的条件，比如这里的意思就是要删除pages大于100的记录
+    db.delete<span class="token punctuation">(</span><span class="token string">"Book"</span>,<span class="token string">"pages > ?"</span>,new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">"100"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">break</span><span class="token punctuation">;</span>
+
+//查询数据
+<span class="token keyword">case</span> R.id.btn_select:
+    //除了第一个参数是表名之外，其他的都是约束条件
+    Cursor cursor <span class="token operator">=</span> db.query<span class="token punctuation">(</span><span class="token string">"Book"</span>, null, null, null, null, null, null, null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>cursor.moveToNext<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
+            String name <span class="token operator">=</span> cursor.getString<span class="token punctuation">(</span>cursor.getColumnIndex<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            String author <span class="token operator">=</span> cursor.getString<span class="token punctuation">(</span>cursor.getColumnIndex<span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            int pages <span class="token operator">=</span> cursor.getInt<span class="token punctuation">(</span>cursor.getColumnIndex<span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            Log.i<span class="token punctuation">(</span><span class="token string">"MainActivity"</span>, <span class="token string">"name: "</span> + name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Log.i<span class="token punctuation">(</span><span class="token string">"MainActivity"</span>, <span class="token string">"author: "</span> + author<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Log.i<span class="token punctuation">(</span><span class="token string">"MainActivity"</span>, <span class="token string">"pages: "</span> + pages<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      cursor.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//记得关闭cursor，不然会造成内存泄漏
+<span class="token keyword">break</span><span class="token punctuation">;</span>
+
+//更改数据
+<span class="token keyword">case</span> R.id.btn_update:
+        ContentValues values1 <span class="token operator">=</span> new ContentValues<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        values1.put<span class="token punctuation">(</span><span class="token string">"price"</span>,10.47<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //第一个参数是表名，第二和第三是约束条件
+        db.update<span class="token punctuation">(</span><span class="token string">"Book"</span>,values1,<span class="token string">"name = ?"</span>,new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">"haha"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">break</span><span class="token punctuation">;</span></code></pre>
+<h5 id="2-4-注意"><a href="#2-4-注意" class="headerlink" title="2.4 注意"></a>2.4 注意</h5><p>① 其实，也可以直接用SQL语句来完成增删查改的功能：</p>
+<pre class=" language-bash"><code class="language-bash">db.execSQL<span class="token punctuation">(</span><span class="token string">"insert into Book (name,author,pages,price) values (?,?,?,?)"</span>, 
+            new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span> <span class="token string">"john"</span> , <span class="token string">"Smith"</span>, <span class="token string">"123"</span>, <span class="token string">"7.5"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+db.execSQL<span class="token punctuation">(</span><span class="token string">"delete from Book where pages > ?"</span> , new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span> <span class="token string">"400"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+db.rawQuery<span class="token punctuation">(</span><span class="token string">"select * from Book"</span> , null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+db.execSQL<span class="token punctuation">(</span><span class="token string">"update Book set price = ? "</span> , new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span> <span class="token string">"32"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>② SQLite的事务处理是如何做的？<br>SQLite在做CRUD操作时都默认开启了事务，然后把SQL语句翻译成对应的SQLiteStatement，并调用其相应的CRUD方法，此时整个操作还是在roolback journal这个临时文件上进行，只有操作顺利完成才能更新.db数据库，否则会回滚。</p>
+<p>③ 怎么使用SQLite更好的做批量操作<br>使用SQLiteDatabase的beginTransaction方法开启一个事务，将批量操作SQL语句转化成SQLiteStatement，并进行批量操作，结束后endTransaction</p>
+<pre class=" language-bash"><code class="language-bash">db.beginTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+try<span class="token punctuation">{</span>
+    db.execSQL<span class="token punctuation">(</span><span class="token punctuation">..</span>.<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    db.execSQL<span class="token punctuation">(</span><span class="token punctuation">..</span>.<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    db.setTransactionSuccessful<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>catch<span class="token punctuation">(</span><span class="token punctuation">..</span>.<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">..</span>.
+<span class="token punctuation">}</span>finally<span class="token punctuation">{</span>
+    db.endTransaction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>④ 怎么删除表中的一个字段<br>SQLite数据库只允许增加表字段而不允许修改和删除表字段，只能采取复制表的思想，即创建一个新表保留原表想要的字段，再将原表删除。</p>
+<p>⑤ 使用SQLite时有什么优化操作</p>
+<ul>
+<li>使用事务做批量处理</li>
+<li>及时关闭cursor，避免内存泄露</li>
+<li>耗时操作异步化，数据库的操作属于本地IO，通常比较耗时，建议放入异步线程中处理</li>
+<li>ContentValues的容量调整，ContentValues内部采用HashMap来存储数据，ContentValues初始容量为8，扩容时翻倍。因此建议提前估量要填入的数据，设置合理的初始化容量，避免不必要的扩容操作。</li>
+<li>使用索引加快检索速度，对于查询操作量较大，业务对查询要求较大的推荐使用索引</li>
+</ul>
+<h3 id="三、运行时权限"><a href="#三、运行时权限" class="headerlink" title="三、运行时权限"></a>三、运行时权限</h3><h5 id="3-1-前言"><a href="#3-1-前言" class="headerlink" title="3.1 前言"></a>3.1 前言</h5><p>运行时权限是Android开发团队在<strong>Android 6.0（API 23）</strong>系统中引入的功能，用户不需要在安装软件的时候一次性授权所有申请的权限，而是可以在软件的使用过程中再对某一项权限申请授权，这样可以更好的保护了用户的安全和隐私。</p>
+<h5 id="3-2-分类"><a href="#3-2-分类" class="headerlink" title="3.2 分类"></a>3.2 分类</h5><p>Android现在将所有权限分成了两类，一类是普通权限。另一类是危险权限。</p>
+<blockquote>
+<p>第三类特殊权限就不讨论了，如下：<br><strong>SYSTEM_ALERT_WINDOW</strong> 系统级别对话框<br><strong>WRITE_SETTINGS</strong> 修改系统设置</p>
+</blockquote>
+<ul>
+<li><strong>普通权限</strong><br>它指的是那些不会直接威胁到用户安全和隐私的权限，对于这部分权限，系统会自动帮我们授权，而不需要用户再去手动授权了。除了危险权限之外，剩余的都是普通权限。</li>
+<li><strong>危险权限</strong><br>它表示那些可能会威胁到用户安全和隐私的权限，对于这部分权限，需要用户手动去授权才可以。<br>该部分权限如下（9组24个权限）：<pre class=" language-bash"><code class="language-bash">group:android.permission-group.CONTACTS
+permission:android.permission.WRITE_CONTACTS
+permission:android.permission.GET_ACCOUNTS
+permission:android.permission.READ_CONTACTS
+</code></pre>
+</li>
+</ul>
+<p>group:android.permission-group.PHONE<br>permission:android.permission.READ_CALL_LOG<br>permission:android.permission.READ_PHONE_STATE<br>permission:android.permission.CALL_PHONE<br>permission:android.permission.WRITE_CALL_LOG<br>permission:android.permission.USE_SIP<br>permission:android.permission.PROCESS_OUTGOING_CALLS<br>permission:com.android.voicemail.permission.ADD_VOICEMAIL</p>
+<p>group:android.permission-group.CALENDAR<br>permission:android.permission.READ_CALENDAR<br>permission:android.permission.WRITE_CALENDAR</p>
+<p>group:android.permission-group.CAMERA<br>permission:android.permission.CAMERA</p>
+<p>group:android.permission-group.SENSORS<br>permission:android.permission.BODY_SENSORS</p>
+<p>group:android.permission-group.LOCATION<br>permission:android.permission.ACCESS_FINE_LOCATION<br>permission:android.permission.ACCESS_COARSE_LOCATION</p>
+<p>group:android.permission-group.STORAGE<br>permission:android.permission.READ_EXTERNAL_STORAGE<br>permission:android.permission.WRITE_EXTERNAL_STORAGE</p>
+<p>group:android.permission-group.MICROPHONE<br>permission:android.permission.RECORD_AUDIO</p>
+<p>group:android.permission-group.SMS<br>permission:android.permission.READ_SMS<br>permission:android.permission.RECEIVE_WAP_PUSH<br>permission:android.permission.RECEIVE_MMS<br>permission:android.permission.RECEIVE_SMS<br>permission:android.permission.SEND_SMS</p>
+<pre><code>
+##### 3.3 注意
+上述的每一个危险权限都属于对应的一个权限组，我们在进行运行时权限处理时使用的是权限名，但是用户一旦授权了，那么该权限所在权限组中的所有其他权限也会同时被授权。
+##### 3.4 小案例
+比如我们点击按钮之后要实现打电话的功能，因为电话权限属于危险权限，所以我们在6.0以上的手机运行时需要先询问用户是否同意授权。
+```bash
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main6);
+
+        button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //先检查打电话权限是否已经被授权
+                //第一个参数是context，第二个是需要授权的权限
+                if (ContextCompat.checkSelfPermission(Main6Activity.this, Manifest.permission.CALL_PHONE) 
+                                                      != PackageManager.PERMISSION_GRANTED){
+                    //如果该权限还未授权，系统会弹出一个申请权限的对话框
+                    //不管用户选择哪项，都会调用下面重写的onRequestPermissionsResult方法
+                    ActivityCompat.requestPermissions(Main6Activity.this,
+                                                      new String[]{ Manifest.permission.CALL_PHONE },1);
+                }else {
+                    call();
+                }
+            }
+        });
+    }
+
+    private void call(){
+        //打电话
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:10086"));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1:
+                if (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    call();
+                }else {
+                    Toast.makeText(this, "您已拒绝该权限，请前往设置开启！", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }</code></pre><h3 id="四、访问其他程序中的数据"><a href="#四、访问其他程序中的数据" class="headerlink" title="四、访问其他程序中的数据"></a>四、访问其他程序中的数据</h3><h5 id="4-1-前言"><a href="#4-1-前言" class="headerlink" title="4.1 前言"></a>4.1 前言</h5><p>Android系统中自带的电话簿、短信、媒体库等程序都提供了这样的内容提供器供外界访问。</p>
+<h5 id="4-2-ContentResolver"><a href="#4-2-ContentResolver" class="headerlink" title="4.2 ContentResolver"></a>4.2 ContentResolver</h5><ul>
+<li>每个应用程序要想访问内容提供器中的数据，就一定要借助ContentResolver类，可以通过Context中的<strong>getContentResolver</strong>方法来获取。ContentResolver类提供了一系列方法用于对数据进行CRUD操作，<strong>insert</strong>方法用于添加数据，<strong>update</strong>方法用于更新数据，<strong>delete</strong>方法用于删除数据，<strong>query</strong>方法用于查询数据。它和SQLiteDatabase很像，只不过它不接收表名，而是换成了Uri参数。</li>
+<li>Uri包括两部分：authority和path。authority命名为 <strong>包名.provider</strong>，path命名为 <strong>表名</strong> ，所以一个标准的Uri可以为<strong>content://com.example.testspecial.provider/table1</strong></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/15623160-35f0c70d237ae66a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>除此之外，我们还可以在这个Uri的后面加上一个id，如下所示<br><strong>content://com.example.testspecial.provider/table1/1</strong><br>它表示调用方希望访问的是com.example.testspecial这个应用的table1表中id为1的数据。</p>
+</blockquote>
+<p>我们得到内容Uri字符串之后，还需要将其转化为Uri对象才可以作为参数传入。</p>
+<pre class=" language-bash"><code class="language-bash">Uri uri <span class="token operator">=</span> Uri.parse<span class="token punctuation">(</span><span class="token string">"content://com.example.testspecial.provider/table1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h6 id="4-2-1-增加数据"><a href="#4-2-1-增加数据" class="headerlink" title="4.2.1 增加数据"></a>4.2.1 增加数据</h6><pre class=" language-bash"><code class="language-bash">ContentValues values <span class="token operator">=</span> new ContentValues<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+values.put<span class="token punctuation">(</span><span class="token string">"column1"</span> , <span class="token string">"text"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+values.put<span class="token punctuation">(</span><span class="token string">"column2"</span> , 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.insert<span class="token punctuation">(</span>uri , values<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h6 id="4-2-2-删除数据"><a href="#4-2-2-删除数据" class="headerlink" title="4.2.2 删除数据"></a>4.2.2 删除数据</h6><pre class=" language-bash"><code class="language-bash">getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.delete<span class="token punctuation">(</span>uri , <span class="token string">"column2 = ? "</span> , new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span> <span class="token string">"1"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h6 id="4-2-3-查询数据"><a href="#4-2-3-查询数据" class="headerlink" title="4.2.3 查询数据"></a>4.2.3 查询数据</h6><pre class=" language-bash"><code class="language-bash">Cursor cursor <span class="token operator">=</span> getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.query<span class="token punctuation">(</span>
+                uri,  //该参数是一个Uri对象
+                projection,  //该参数指定查询的列名
+                selection,  //该参数指定where的约束条件
+                sortOrder<span class="token punctuation">)</span><span class="token punctuation">;</span>  //该参数指定查询结果的排序方式
+if<span class="token punctuation">(</span>cursor <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    while<span class="token punctuation">(</span>cursor.moveToNext<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">{</span>
+        String column1 <span class="token operator">=</span> cursor.getString<span class="token punctuation">(</span> cursor.getColumnIndex<span class="token punctuation">(</span><span class="token string">"column1"</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        int column2 <span class="token operator">=</span> cursor.getInt<span class="token punctuation">(</span> cursor.getColumnIndex<span class="token punctuation">(</span><span class="token string">"column2"</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cursor.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h6 id="4-2-4-修改数据"><a href="#4-2-4-修改数据" class="headerlink" title="4.2.4 修改数据"></a>4.2.4 修改数据</h6><p>比如我们把column1的数据改为”changed”，我们可以：</p>
+<pre class=" language-bash"><code class="language-bash">ContentValues values <span class="token operator">=</span> new ContentValues<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+values.put<span class="token punctuation">(</span><span class="token string">"column1"</span> , <span class="token string">"changed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.update<span class="token punctuation">(</span>uri , values, <span class="token string">"column1 = ? and column2 = ? "</span>, new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span> <span class="token string">"text"</span> , <span class="token string">"1"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h5 id="4-3-小案例"><a href="#4-3-小案例" class="headerlink" title="4.3 小案例"></a>4.3 小案例</h5><p>这里我们实现读取手机里联系人的功能</p>
+<pre class=" language-bash"><code class="language-bash">public class Main6Activity extends AppCompatActivity <span class="token punctuation">{</span>
+
+    private ListView listView<span class="token punctuation">;</span>
+    ArrayAdapter<span class="token operator">&lt;</span>String<span class="token operator">></span> adapter<span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>String<span class="token operator">></span> contactsList <span class="token operator">=</span> new ArrayList<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    @Override
+    protected void onCreate<span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super.onCreate<span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        setContentView<span class="token punctuation">(</span>R.layout.activity_main6<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        listView <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.listView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        adapter <span class="token operator">=</span> new ArrayAdapter<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>this,android.R.layout.simple_list_item_1,contactsList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        listView.setAdapter<span class="token punctuation">(</span>adapter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //先检查权限是否已经被授权
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ContextCompat.checkSelfPermission<span class="token punctuation">(</span>Main6Activity.this, Manifest.permission.READ_CONTACTS<span class="token punctuation">)</span> <span class="token operator">!=</span> PackageManager.PERMISSION_GRANTED<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ActivityCompat.requestPermissions<span class="token punctuation">(</span>Main6Activity.this, new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>Manifest.permission.READ_CONTACTS<span class="token punctuation">}</span>, 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            readContacts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    private void readContacts<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Cursor cursor <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        try <span class="token punctuation">{</span>
+            //ContactsContract.CommonDataKinds.Phone类已经帮我们封装好了，提供了一个CONTENT_URI常量，它就是一个Uri对象
+            cursor <span class="token operator">=</span> getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.query<span class="token punctuation">(</span>ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cursor <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>cursor.moveToNext<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">{</span>
+                    String name <span class="token operator">=</span> cursor.getString<span class="token punctuation">(</span>cursor.getColumnIndex<span class="token punctuation">(</span>ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME<span class="token punctuation">))</span><span class="token punctuation">;</span>
+                    String number <span class="token operator">=</span> cursor.getString<span class="token punctuation">(</span>cursor.getColumnIndex<span class="token punctuation">(</span>ContactsContract.CommonDataKinds.Phone.NUMBER<span class="token punctuation">))</span><span class="token punctuation">;</span>
+                    contactsList.add<span class="token punctuation">(</span>name + <span class="token string">"\n"</span> + number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                //通知listView数据已改变
+                adapter.notifyDataSetChanged<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>catch <span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            e.printStackTrace<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>finally <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cursor <span class="token operator">!=</span> null<span class="token punctuation">)</span> cursor.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    public void onRequestPermissionsResult<span class="token punctuation">(</span>int requestCode, @NonNull String<span class="token punctuation">[</span><span class="token punctuation">]</span> permissions, @NonNull int<span class="token punctuation">[</span><span class="token punctuation">]</span> grantResults<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        switch <span class="token punctuation">(</span>requestCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> 1:
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>grantResults.length <span class="token operator">></span> 0 <span class="token operator">&amp;&amp;</span> grantResults<span class="token punctuation">[</span>0<span class="token punctuation">]</span> <span class="token operator">==</span> PackageManager.PERMISSION_GRANTED<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    readContacts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    Toast.makeText<span class="token punctuation">(</span>this, <span class="token string">"您已拒绝该权限，请前往设置开启！"</span>, Toast.LENGTH_SHORT<span class="token punctuation">)</span>.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><img src="https://upload-images.jianshu.io/upload_images/15623160-34d4342c96277695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="五、创建自己的内容提供器"><a href="#五、创建自己的内容提供器" class="headerlink" title="五、创建自己的内容提供器"></a>五、创建自己的内容提供器</h3><h5 id="5-1-前言"><a href="#5-1-前言" class="headerlink" title="5.1 前言"></a>5.1 前言</h5><p>整体思路：<br>首先，自定义类继承ContentProvider。<br>然后，重写onCreate、query、insert、update、delete、getType方法。<br>最后，记得在AndroidManifest文件中注册该content provider。</p>
+<h5 id="5-2-实例"><a href="#5-2-实例" class="headerlink" title="5.2 实例"></a>5.2 实例</h5><pre class=" language-bash"><code class="language-bash">public class MyProvider extends ContentProvider <span class="token punctuation">{</span>
+
+    public static final int BOOK_DIR <span class="token operator">=</span> 0<span class="token punctuation">;</span> //代表访问Book表的所有数据
+    public static final int BOOK_ITEM <span class="token operator">=</span> 1<span class="token punctuation">;</span> //代表访问Book表的单条数据
+    public static final int CATEGORY_DIR <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+    public static final int CATEGORY_ITEM <span class="token operator">=</span> 3<span class="token punctuation">;</span>
+
+    public static final String AUTHORITY <span class="token operator">=</span> <span class="token string">"com.example.testspecial.provider"</span><span class="token punctuation">;</span>
+
+    private static UriMatcher uriMatcher<span class="token punctuation">;</span> //UriMatcher类可以实现匹配Uri的功能
+
+    private MySQLiteHelper sqLiteHelper<span class="token punctuation">;</span>
+
+    static <span class="token punctuation">{</span>
+        uriMatcher <span class="token operator">=</span> new UriMatcher<span class="token punctuation">(</span>UriMatcher.NO_MATCH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        uriMatcher.addURI<span class="token punctuation">(</span>AUTHORITY,<span class="token string">"book"</span>,BOOK_DIR<span class="token punctuation">)</span><span class="token punctuation">;</span> //如果uriMatcher.match<span class="token punctuation">(</span>uri<span class="token punctuation">)</span>匹配这个URI，就返回BOOK_DIR
+        uriMatcher.addURI<span class="token punctuation">(</span>AUTHORITY,<span class="token string">"book/#"</span>,BOOK_ITEM<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        uriMatcher.addURI<span class="token punctuation">(</span>AUTHORITY,<span class="token string">"category"</span>,CATEGORY_DIR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        uriMatcher.addURI<span class="token punctuation">(</span>AUTHORITY,<span class="token string">"category/#"</span>,CATEGORY_ITEM<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    public MyProvider<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    //初始化内容提供器的时候调用，通常会在这里完成对数据库的创建和升级等操作，返回true表示初始化成功，反之失败。
+    @Override
+    public boolean onCreate<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // TODO: Implement this to initialize your content provider on startup.
+        sqLiteHelper <span class="token operator">=</span> new MySQLiteHelper<span class="token punctuation">(</span>getContext<span class="token punctuation">(</span><span class="token punctuation">)</span>,<span class="token string">"BookStore.db"</span>,null,2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    //从内容提供器中查询数据，查到的内容放在cursor中返回
+    @Override
+    public Cursor query<span class="token punctuation">(</span>Uri uri, String<span class="token punctuation">[</span><span class="token punctuation">]</span> projection, String selection,
+                        String<span class="token punctuation">[</span><span class="token punctuation">]</span> selectionArgs, String sortOrder<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // TODO: Implement this to handle query requests from clients.
+        SQLiteDatabase db <span class="token operator">=</span> sqLiteHelper.getReadableDatabase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Cursor cursor <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        switch <span class="token punctuation">(</span>uriMatcher.match<span class="token punctuation">(</span>uri<span class="token punctuation">))</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> BOOK_DIR:
+                cursor <span class="token operator">=</span> db.query<span class="token punctuation">(</span><span class="token string">"Book"</span>,projection,selection,selectionArgs,null,null,sortOrder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> BOOK_ITEM:
+                String bookId <span class="token operator">=</span> uri.getPathSegments<span class="token punctuation">(</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                cursor <span class="token operator">=</span> db.query<span class="token punctuation">(</span><span class="token string">"Book"</span>,projection,<span class="token string">"id = ?"</span>,new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>bookId<span class="token punctuation">}</span>,null,null,sortOrder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_DIR:
+                cursor <span class="token operator">=</span> db.query<span class="token punctuation">(</span><span class="token string">"Category"</span>,projection,selection,selectionArgs,null,null,sortOrder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_ITEM:
+                String categoryId <span class="token operator">=</span> uri.getPathSegments<span class="token punctuation">(</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                cursor <span class="token operator">=</span> db.query<span class="token punctuation">(</span><span class="token string">"Category"</span>,projection,<span class="token string">"id = ?"</span>,new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>categoryId<span class="token punctuation">}</span>,null,null,sortOrder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> cursor<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    //根据传入的内容URI来返回相应的MIME类型。
+    //一个内容URI所对应的MIME字符串主要由三部分组分。
+    //Android对这三个部分做了以下格式规定：必须以vnd开头；如果内容URI以路径结尾，
+    //则后接android.cursor.dir/，如果内容URI以id结尾，则后接android.cursor.item/；
+    //最后接上vnd.<span class="token operator">&lt;</span> authority<span class="token operator">></span>.<span class="token operator">&lt;</span> path<span class="token operator">></span>
+    @Override
+    public String getType<span class="token punctuation">(</span>Uri uri<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // TODO: Implement this to handle requests <span class="token keyword">for</span> the MIME <span class="token function">type</span> of the data
+        // at the given URI.
+        switch <span class="token punctuation">(</span>uriMatcher.match<span class="token punctuation">(</span>uri<span class="token punctuation">))</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> BOOK_DIR:
+                <span class="token keyword">return</span> <span class="token string">"vnd.android.cursor.dir/vnd.com.example.testspecial.provider.book"</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> BOOK_ITEM:
+                <span class="token keyword">return</span> <span class="token string">"vnd.android.cursor.item/vnd.com.example.testspecial.provider.book"</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_DIR:
+                <span class="token keyword">return</span> <span class="token string">"vnd.android.cursor.dir/vnd.com.example.testspecial.provider.category"</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_ITEM:
+                <span class="token keyword">return</span> <span class="token string">"vnd.android.cursor.item/vnd.com.example.testspecial.provider.category"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    //向内容提供器中添加一条数据，返回一个用于表示这条新纪录的URI
+    @Override
+    public Uri insert<span class="token punctuation">(</span>Uri uri, ContentValues values<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // TODO: Implement this to handle requests to insert a new row.
+        SQLiteDatabase db <span class="token operator">=</span> sqLiteHelper.getWritableDatabase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Uri uriReturn <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        switch <span class="token punctuation">(</span>uriMatcher.match<span class="token punctuation">(</span>uri<span class="token punctuation">))</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> BOOK_DIR:
+            <span class="token keyword">case</span> BOOK_ITEM:
+                long newBookId <span class="token operator">=</span> db.insert<span class="token punctuation">(</span><span class="token string">"Book"</span>,null,values<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                uriReturn <span class="token operator">=</span> Uri.parse<span class="token punctuation">(</span><span class="token string">"content://"</span> + AUTHORITY + <span class="token string">"/book/"</span> + newBookId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_DIR:
+            <span class="token keyword">case</span> CATEGORY_ITEM:
+                long newCategoryId <span class="token operator">=</span> db.insert<span class="token punctuation">(</span><span class="token string">"Category"</span>,null,values<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                uriReturn <span class="token operator">=</span> Uri.parse<span class="token punctuation">(</span><span class="token string">"content://"</span> + AUTHORITY + <span class="token string">"/category/"</span> + newCategoryId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> uriReturn<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    //从内容提供器中删除数据，返回受影响的行数
+    @Override
+    public int delete<span class="token punctuation">(</span>Uri uri, String selection, String<span class="token punctuation">[</span><span class="token punctuation">]</span> selectionArgs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // Implement this to handle requests to delete one or <span class="token function">more</span> rows.
+        SQLiteDatabase db <span class="token operator">=</span> sqLiteHelper.getWritableDatabase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        int deletedRows <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+        switch <span class="token punctuation">(</span>uriMatcher.match<span class="token punctuation">(</span>uri<span class="token punctuation">))</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> BOOK_DIR:
+                deletedRows <span class="token operator">=</span> db.delete<span class="token punctuation">(</span><span class="token string">"Book"</span>,selection,selectionArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> BOOK_ITEM:
+                String bookId <span class="token operator">=</span> uri.getPathSegments<span class="token punctuation">(</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                deletedRows <span class="token operator">=</span> db.delete<span class="token punctuation">(</span><span class="token string">"Book"</span>,<span class="token string">"id = ?"</span>,new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>bookId<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_DIR:
+                deletedRows <span class="token operator">=</span> db.delete<span class="token punctuation">(</span><span class="token string">"Category"</span>,selection,selectionArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_ITEM:
+                String categoryId <span class="token operator">=</span> uri.getPathSegments<span class="token punctuation">(</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                deletedRows <span class="token operator">=</span> db.delete<span class="token punctuation">(</span><span class="token string">"Category"</span>,<span class="token string">"id = ?"</span>,new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>categoryId<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> deletedRows<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    //更新内容提供器中已有的数据，返回受影响的行数
+    @Override
+    public int update<span class="token punctuation">(</span>Uri uri, ContentValues values, String selection,
+                      String<span class="token punctuation">[</span><span class="token punctuation">]</span> selectionArgs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        // TODO: Implement this to handle requests to update one or <span class="token function">more</span> rows.
+        SQLiteDatabase db <span class="token operator">=</span> sqLiteHelper.getWritableDatabase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        int updateRows <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+        switch <span class="token punctuation">(</span>uriMatcher.match<span class="token punctuation">(</span>uri<span class="token punctuation">))</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> BOOK_DIR:
+                updateRows <span class="token operator">=</span> db.update<span class="token punctuation">(</span><span class="token string">"Book"</span>,values,selection,selectionArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> BOOK_ITEM:
+                String bookId <span class="token operator">=</span> uri.getPathSegments<span class="token punctuation">(</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                updateRows <span class="token operator">=</span> db.update<span class="token punctuation">(</span><span class="token string">"Book"</span>,values,<span class="token string">"id = ?"</span>,new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>bookId<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_DIR:
+                updateRows <span class="token operator">=</span> db.update<span class="token punctuation">(</span><span class="token string">"Category"</span>,values,selection,selectionArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> CATEGORY_ITEM:
+                String categoryId <span class="token operator">=</span> uri.getPathSegments<span class="token punctuation">(</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                updateRows <span class="token operator">=</span> db.update<span class="token punctuation">(</span><span class="token string">"Category"</span>,values,<span class="token string">"id = ?"</span>,new String<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>categoryId<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> updateRows<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>然后我们在另外一个项目中访问上面的content provider。</p>
+<pre class=" language-bash"><code class="language-bash">public class MainActivity extends AppCompatActivity implements View.OnClickListener <span class="token punctuation">{</span>
+
+    private Button btn_insert,btn_delete,btn_select,btn_update<span class="token punctuation">;</span>
+    private String newId<span class="token punctuation">;</span>
+
+    @Override
+    protected void onCreate<span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super.onCreate<span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        setContentView<span class="token punctuation">(</span>R.layout.activity_main<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        btn_insert <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_insert<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_delete <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_delete<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_select <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_select<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_update <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_update<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_insert.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_delete.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_select.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_update.setOnClickListener<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    public void onClick<span class="token punctuation">(</span>View v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        switch <span class="token punctuation">(</span>v.getId<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> R.id.btn_insert:
+                Uri uri1 <span class="token operator">=</span> Uri.parse<span class="token punctuation">(</span><span class="token string">"content://com.example.testspecial.provider/book"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                ContentValues values <span class="token operator">=</span> new ContentValues<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                values.put<span class="token punctuation">(</span><span class="token string">"name"</span>,<span class="token string">"oiu"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                values.put<span class="token punctuation">(</span><span class="token string">"author"</span>,<span class="token string">"wef"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                values.put<span class="token punctuation">(</span><span class="token string">"pages"</span>,15<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Uri newUri <span class="token operator">=</span> getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.insert<span class="token punctuation">(</span>uri1,values<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                newId <span class="token operator">=</span> newUri.getPathSegments<span class="token punctuation">(</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> R.id.btn_delete:
+                Uri uri2 <span class="token operator">=</span> Uri.parse<span class="token punctuation">(</span><span class="token string">"content://com.example.testspecial.provider/book/"</span>+newId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.delete<span class="token punctuation">(</span>uri2,null,null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> R.id.btn_select:
+                Log.i<span class="token punctuation">(</span><span class="token string">"MainActivity"</span>, <span class="token string">"onClick: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Uri uri <span class="token operator">=</span> Uri.parse<span class="token punctuation">(</span><span class="token string">"content://com.example.testspecial.provider/book"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Cursor cursor <span class="token operator">=</span> getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.query<span class="token punctuation">(</span>uri,null,null,null,null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cursor <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">while</span> <span class="token punctuation">(</span>cursor.moveToNext<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">{</span>
+                        String name <span class="token operator">=</span> cursor.getString<span class="token punctuation">(</span>cursor.getColumnIndex<span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                        String author <span class="token operator">=</span> cursor.getString<span class="token punctuation">(</span>cursor.getColumnIndex<span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                        int pages <span class="token operator">=</span> cursor.getInt<span class="token punctuation">(</span>cursor.getColumnIndex<span class="token punctuation">(</span><span class="token string">"pages"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                        Log.i<span class="token punctuation">(</span><span class="token string">"MainActivity"</span>, <span class="token string">"name: "</span>+name+
+                                <span class="token string">"\n author: "</span>+author+
+                                <span class="token string">"\n pages: "</span>+pages<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                    cursor.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> R.id.btn_update:
+                Uri uri3 <span class="token operator">=</span> Uri.parse<span class="token punctuation">(</span><span class="token string">"content://com.example.testspecial.provider/book/"</span>+newId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                ContentValues values1 <span class="token operator">=</span> new ContentValues<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                values1.put<span class="token punctuation">(</span><span class="token string">"name"</span>,<span class="token string">"changedName"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                values1.put<span class="token punctuation">(</span><span class="token string">"author"</span>,<span class="token string">"changedAuthor"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                values1.put<span class="token punctuation">(</span><span class="token string">"pages"</span>,67<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                getContentResolver<span class="token punctuation">(</span><span class="token punctuation">)</span>.update<span class="token punctuation">(</span>uri3,values1,null,null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://longsh1z.github.io" rel="external nofollow noreferrer">Anthony</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://longsh1z.github.io/2020/03/21/si-da-zu-jian-zhi-contentprovider/">https://longsh1z.github.io/2020/03/21/si-da-zu-jian-zhi-contentprovider/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://longsh1z.github.io" target="_blank">Anthony</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Content-Provider/">
+                                    <span class="chip bg-color">Content Provider</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/03/21/si-da-zu-jian-zhi-contentprovider/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="四大组件之ContentProvider">
+                        
+                        <span class="card-title">四大组件之ContentProvider</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+本文目录结构：一、内容提供器简介二、数据存储方案三、运行时权限四、访问其他程序中的数据五、创建自己的内容提供器
+
+一、内容提供器简介
+作为四大组件之一，Content Provider主要用于存储数据和在不同的应用程序之间共享数据。和文件
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Anthony
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Content-Provider/">
+                        <span class="chip bg-color">Content Provider</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/21/si-da-zu-jian-zhi-service/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="四大组件之Service">
+                        
+                        <span class="card-title">四大组件之Service</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+本文目录结构：一、服务简介二、多线程编程三、服务的生命周期四、服务的基本用法五、前台服务六、如何保证service不被杀死
+
+一、服务简介定义：服务在Android中的运用主要是实现任务在后台的运行，特别是那些不需要和用户交互而且还要求长
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Anthony
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Service/">
+                        <span class="chip bg-color">Service</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="https://longsh1z.github.io" target="_blank">Anthony</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">14.9k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/LongSh1z" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2674461089@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2674461089" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2674461089" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

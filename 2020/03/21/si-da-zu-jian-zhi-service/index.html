@@ -1,0 +1,1407 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="四大组件之Service, LongSh1z">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>四大组件之Service | LongSh1z</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">LongSh1z</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">LongSh1z</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">四大组件之Service</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Service/">
+                                <span class="chip bg-color">Service</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-03-21
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.9k
+                </div>
+                
+
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>本文目录结构：<br>一、服务简介<br>二、多线程编程<br>三、服务的生命周期<br>四、服务的基本用法<br>五、前台服务<br>六、如何保证service不被杀死</p>
+</blockquote>
+<h3 id="一、服务简介"><a href="#一、服务简介" class="headerlink" title="一、服务简介"></a>一、服务简介</h3><h5 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h5><p>服务在Android中的运用主要是实现任务在后台的运行，特别是那些不需要和用户交互而且还要求长期运行的任务，比如下载资源。服务的运行不依赖于任何用户界面，即使程序被切换到后台，或者用户打开了另外一个应用程序，服务仍然能够保持正常运行。</p>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><p>①服务并不是运行在一个独立的进程中的，而是依赖于创建服务时所在的应用进程。所以当该进程被杀掉时，所有依赖于该进程的服务也会停止运行。<br>②服务并不会自动开启线程，所有代码都是运行在主线程当中的。</p>
+<h3 id="二、多线程编程"><a href="#二、多线程编程" class="headerlink" title="二、多线程编程"></a>二、多线程编程</h3><p>Android中的多线程主要有Thread与Handler的结合使用、AsyncTask、HandlerThread以及IntentService四种方式</p>
+<h5 id="2-1-Thread与Handler的结合使用"><a href="#2-1-Thread与Handler的结合使用" class="headerlink" title="2.1 Thread与Handler的结合使用"></a>2.1 Thread与Handler的结合使用</h5><h6 id="2-1-1-创建方式"><a href="#2-1-1-创建方式" class="headerlink" title="2.1.1 创建方式"></a>2.1.1 创建方式</h6><p>Thread的创建方法我就不多讲了，在我的文章<a href="https://www.jianshu.com/p/652e54187fd6" target="_blank" rel="noopener">《那些你所不知道的Java小知识（持续更新）》</a>的第3点中可以看到。因为系统不建议在子线程中更新UI，但是有些时候我们必须在子线程里去执行一些耗时任务，然后根据任务的执行结果来更新相应的控件。因此Android为我们提供了一个<strong>异步消息处理机制</strong>。（至于为什么不建议，大家可以去看一下鸿洋的<a href="https://mp.weixin.qq.com/s/ZBHpbOj6cojvUCVZ5fAYBA" target="_blank" rel="noopener">《Android中子线程真的不能更新UI吗？》</a>，讲解的很详细）</p>
+<h6 id="2-1-2-异步消息处理机制"><a href="#2-1-2-异步消息处理机制" class="headerlink" title="2.1.2 异步消息处理机制"></a>2.1.2 异步消息处理机制</h6><p>该机制主要由四个部分组成：Message，Handler，MessageQueue和Looper。</p>
+<ul>
+<li><p><strong>Message</strong> 是在线程之间传递的，它可以携带少量的信息，用于在不同线程之间交换数据。<strong>每个线程可以有多个Message对象</strong>。</p>
+<blockquote>
+<p>Message的创建方式有以下三种：<br>Message msg = new Message();<br>Message msg =Message.obtain();<br>Message msg = handler1.obtainMessage();<br>后两种方法都是从整个Message池中返回一个新的Message实例，能有效避免重复Message创建对象，因此更推荐后两种方法。</p>
+</blockquote>
+</li>
+<li><p><strong>Handler</strong> 主要用于发送和处理Message。发送消息一般是使用Handler的sendMessage方法，消息经过一系列流程过后会传到Handler的handleMessage方法中。<strong>每个线程可以有多个Handler对象</strong>。</p>
+</li>
+<li><p><strong>MessageQueue</strong> 主要用于存储所有通过Handler发送的Message。<strong>每个线程只有一个MessageQueue对象</strong>。</p>
+</li>
+<li><p><strong>Looper</strong> 相当于MessageQueue的管家，当调用Looper的loop方法之后，就会进入一个无限循环当中，然后每当发现MessageQueue中存在一条消息，就会将它取出，并传递到Handler的handleMessage方法中。<strong>每个线程只有一个Looper对象</strong>。<br>所以它们四个的数量关系是：每个线程只能有一个Looper和一个MessageQueue，但是可以有多个Handler和多个Message。<br><img src="https://upload-images.jianshu.io/upload_images/15623160-2cb5361373a9e850.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="流程图"></p>
+</li>
+</ul>
+<h6 id="2-1-3-小例子"><a href="#2-1-3-小例子" class="headerlink" title="2.1.3 小例子"></a>2.1.3 小例子</h6><p>这里我们实现点击按钮之后在子线程中更新按钮的文字。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15623160-58678c777354866e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="小例子.png"></p>
+<h6 id="2-1-4-注意"><a href="#2-1-4-注意" class="headerlink" title="2.1.4 注意"></a>2.1.4 注意</h6><p>① 主线程中Looper的轮询死循环为什么没有阻塞主线程？<br>Android是依靠事件驱动的，通过Looper.loop()不断进行消息循环，可以说activity的生命周期都是运行在Looper.loop()的控制之下，一旦退出消息循环，应用也就退出了。<br>② 使用Handler的postDelay()后消息队列会发生什么变化？<br>postDelay的Message并不是先等待一定时间再放到MessageQueue中，而是直接放入并阻塞当前线程，然后将其delay的时间和队头的进行比较，按照触发时间进行排序，更近的则放入队头，保证队头的时间最小，队尾的最大。如果此时队头的Message正是被delay的，则将当前线程堵塞一段时间，直到等待足够的时间再唤醒执行该Message，否则唤醒后直接执行。</p>
+<h5 id="2-2-AsyncTask"><a href="#2-2-AsyncTask" class="headerlink" title="2.2 AsyncTask"></a>2.2 AsyncTask</h5><h6 id="2-2-1-前言"><a href="#2-2-1-前言" class="headerlink" title="2.2.1 前言"></a>2.2.1 前言</h6><p>① AsyncTask的底层原理封装了线程池和Handler，在其之中有两个线程池：<strong>SerialExecutor</strong>用于任务的排队，默认是串行的线程池，在3.0以前核心线程数为5，线程池大小为128，而3.0以后改为同一时间只能处理一个任务；<strong>THREAD_POOL_EXECUTOR</strong>用于真正执行任务。<br>② AsyncTask是一个抽象类，使用前要先继承。（匿名内部类的方式除外）。</p>
+<h6 id="2-2-2-参数和方法说明"><a href="#2-2-2-参数和方法说明" class="headerlink" title="2.2.2 参数和方法说明"></a>2.2.2 参数和方法说明</h6><p><img src="https://upload-images.jianshu.io/upload_images/15623160-4e0357d0bbfec2ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>① 在继承的时候我们需要指定三个参数，它们代表的意义如下：</p>
+<ul>
+<li><p><strong>Params</strong>：在执行AsyncTask时需要传入的参数，它可以在后台任务中使用。</p>
+</li>
+<li><p><strong>Progress</strong>：后台任务执行时，如果需要在界面上显示当前的进度，则使用这里指定的参数作为单位。</p>
+</li>
+<li><p><strong>Result</strong>：当后台任务执行完毕后，如果需要返回结果，则使用这里的参数作为返回类型。<br>所以，一个自定义的AsyncTask可以如下所示：</p>
+<pre class=" language-bash"><code class="language-bash">public class MyTask extends AsyncTask<span class="token operator">&lt;</span>Void,Integer,Boolean<span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token punctuation">..</span>.
+<span class="token punctuation">}</span></code></pre>
+<p>② 接着我们需要重写其中的几个方法：</p>
+</li>
+<li><p><strong>onPreExecute()</strong><br>这个方法会在后台任务开始执行之前调用，我们可以在这里进行一些界面上的初始化操作，比如显示一个对话框。</p>
+</li>
+<li><p><strong>doInBackground(Params… params)</strong><br>这个方法中的所有代码都会在子线程中执行，我们应该在这里去处理所有的耗时操作。任务完成时就可以通过return语句将执行结果返回，如果指定第三个参数为Void就不需要返回了。因为代码都是在子线程中执行的，所以注意不能再这里更新UI。如果需要反馈当前后台任务的执行进度，可以调用publishProgress(Progress… progress)方法来实现。</p>
+</li>
+<li><p><strong>OnProgressUpdate(Progress… progress)</strong><br>当后台任务调用publishProgress方法后，该方法很快就会被调用，其中的参数就是publishProgress传过来的。该方法里面可以对UI进行操作，利用参数中的数值就可以对界面元素进行相应的更新。</p>
+</li>
+<li><p><strong>onPostExecute(Result result)</strong><br>当后台任务执行完毕并通过return语句返回时，该方法很快就会被调用。返回的结果就会被作为参数传到该方法中。我们可以利用返回的数据来进行一些UI操作，比如提醒任务执行的结果，以及关闭对话框等。<br>所以，一个完整的AsyncTask可以如下所示：</p>
+<pre class=" language-bash"><code class="language-bash">public class MyTask extends AsyncTask<span class="token operator">&lt;</span>Void,Integer,Boolean<span class="token operator">></span> <span class="token punctuation">{</span>
+
+  @Override
+  protected void onPreExecute<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      dialog.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//显示对话框
+  <span class="token punctuation">}</span>
+
+  @Override
+  protected Boolean doInBackground<span class="token punctuation">(</span>Void<span class="token punctuation">..</span>. voids<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      try<span class="token punctuation">{</span>
+          while<span class="token punctuation">(</span>true<span class="token punctuation">)</span><span class="token punctuation">{</span>
+              int downloadProgress <span class="token operator">=</span> downloadAndGetProgress<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//这是一个虚构的方法
+              publishProgress<span class="token punctuation">(</span>downloadProgress<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>downloadProgress <span class="token operator">>=</span> 100<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                  <span class="token keyword">break</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>catch <span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>//下载失败
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>//下载成功
+  <span class="token punctuation">}</span>
+
+  @Override
+  protected void onProgressUpdate<span class="token punctuation">(</span>Integer<span class="token punctuation">..</span>. values<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      //更新下载进度
+      dialog.setMessage<span class="token punctuation">(</span><span class="token string">"Download "</span> + values<span class="token punctuation">[</span>0<span class="token punctuation">]</span> + <span class="token string">"%"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  @Override
+  protected void onPostExecute<span class="token punctuation">(</span>Boolean result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      dialog.dismiss<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//关闭对话框
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">{</span>
+          //提示下载成功
+      <span class="token punctuation">}</span>else<span class="token punctuation">{</span>
+          //提示下载失败
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>如果想要启动这个后台任务，只需要执行new MyTask().execute();即可。</p>
+</li>
+</ul>
+<p>######2.2.3 注意</p>
+<p>① 不要直接调用onPreExecute()、doInBackground()、onProgressUpdate()、onPostExecute()和onCancelled()方法。<br>② 一个异步对象只能调用过一次execute方法。</p>
+<h5 id="2-3-HandlerThread"><a href="#2-3-HandlerThread" class="headerlink" title="2.3 HandlerThread"></a>2.3 HandlerThread</h5><h6 id="2-3-1-前言"><a href="#2-3-1-前言" class="headerlink" title="2.3.1 前言"></a>2.3.1 前言</h6><p>HandlerThread是一种具有消息循环的线程，其内部可使用Handler。通俗来讲，与子线程绑定的handler发送出去的消息，是在子线程当中执行的。</p>
+<h6 id="2-3-2-使用方法"><a href="#2-3-2-使用方法" class="headerlink" title="2.3.2 使用方法"></a>2.3.2 使用方法</h6><p>整体思路：将子线程与workHandler绑定之后，在要进行耗时操作的地方通过workHandler发送消息，然后在通过mainHandler发送消息进行主线程的UI更新。</p>
+<pre class=" language-bash"><code class="language-bash">        //第零步，创建主线程的handler，这里我称之为主handler
+        mainHandler <span class="token operator">=</span> new Handler<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            @Override
+            public void handleMessage<span class="token punctuation">(</span>Message msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                switch <span class="token punctuation">(</span>msg.what<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">case</span> 1:
+                        btn_send.setText<span class="token punctuation">(</span><span class="token string">"after"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        //第一步，创建handlerThread对象
+        final HandlerThread handlerThread <span class="token operator">=</span> new HandlerThread<span class="token punctuation">(</span><span class="token string">"handlerThread"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //第二步，启动handlerTh
+        handlerThread.start<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //第三步，创建与handlerThread绑定的handler，这里我称之为工作handler
+        //其发送的消息都是在子线程中执行的
+        final Handler workHandler <span class="token operator">=</span> new Handler<span class="token punctuation">(</span>handlerThread.getLooper<span class="token punctuation">(</span><span class="token punctuation">)</span>, new Handler.Callback<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            @Override
+            public boolean handleMessage<span class="token punctuation">(</span>Message msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                switch <span class="token punctuation">(</span>msg.what<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">case</span> 0:
+                        //这里做耗时操作
+                        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"我做了耗时操作。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                        //做完耗时操作通过mainHandler进行UI的更新
+                        mainHandler.sendEmptyMessage<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //第四步，通过workHan发送消息来做耗时操作
+        btn_send <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_send<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_send.setOnClickListener<span class="token punctuation">(</span>new View.OnClickListener<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            @Override
+            public void onClick<span class="token punctuation">(</span>View v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                new Thread<span class="token punctuation">(</span>new Runnable<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    @Override
+                    public void run<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        workHandler.sendEmptyMessage<span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span>.start<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        //第五步，退出消息循环
+        btn_quit <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_quit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_quit.setOnClickListener<span class="token punctuation">(</span>new View.OnClickListener<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            @Override
+            public void onClick<span class="token punctuation">(</span>View v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                new Thread<span class="token punctuation">(</span>new Runnable<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    @Override
+                    public void run<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        handlerThread.quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span>.start<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h6 id="2-3-3-注意"><a href="#2-3-3-注意" class="headerlink" title="2.3.3 注意"></a>2.3.3 注意</h6><p>① 如何将一个Thread线程变成一个Looper线程？<br>通过Looper.prepare()可将一个一个Thread线程变成一个Looper线程。</p>
+<p>② Looper线程有什么特点？<br>它通过MessageQueue来存放消息，Looper.loop()进行消息轮询。</p>
+<p>③ 可以在子线程直接new一个Handler吗？不行的话要怎么做？<br>因为子线程的Looper需要手动去创建，所以不可以直接new。<br>要new一个Handler的话可以这样做：</p>
+<pre class=" language-bash"><code class="language-bash">new Thread<span class="token punctuation">(</span>new Runnable<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            @Override
+            public void run<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Looper.prepare<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//为子线程创建Looper
+                new Handler<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    @Override
+                    public void handleMessage<span class="token punctuation">(</span>Message msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        //这里的消息处理是在子线程中执行的
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span><span class="token punctuation">;</span>
+                Looper.loop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//开启消息轮询
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>.start<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<blockquote>
+<p>在<strong>ActivityThread</strong>里调用了 <strong>Looper.prepareMainLooper()</strong>方法创建了主线程的 Looper ，并且调用了 loop() 方法，所以我们就可以直接在主线程使用 Handler 了</p>
+</blockquote>
+<h5 id="2-4-IntentService"><a href="#2-4-IntentService" class="headerlink" title="2.4 IntentService"></a>2.4 IntentService</h5><h6 id="2-4-1-前言"><a href="#2-4-1-前言" class="headerlink" title="2.4.1 前言"></a>2.4.1 前言</h6><p>不同于线程，它是服务，优先级比线程高，更不容易被系统杀死，因此较适合执行一些高优先级的后台任务；<br>不同于普通服务，它可自动创建子线程来执行后台任务，并且任务执行完毕后会自动退出。</p>
+<h6 id="2-4-2-使用方法"><a href="#2-4-2-使用方法" class="headerlink" title="2.4.2 使用方法"></a>2.4.2 使用方法</h6><pre class=" language-bash"><code class="language-bash">//第一步，自定义服务
+public class MyIntentService extends IntentService <span class="token punctuation">{</span>
+
+    public MyIntentService<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        //必须调用父类的有参构造函数
+        super<span class="token punctuation">(</span><span class="token string">"ha"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//这里的ha是随便写的
+    <span class="token punctuation">}</span>
+
+    //重写onHandleIntent方法
+    @Override
+    protected void onHandleIntent<span class="token punctuation">(</span> Intent intent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        //做耗时操作，因为该方法是在子线程中执行的
+    <span class="token punctuation">}</span>
+
+    @Override
+    public void onDestroy<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super.onDestroy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Log.i<span class="token punctuation">(</span><span class="token string">"MyIntentService"</span>, <span class="token string">"MyIntentService onDestroy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+//第二步，注册服务<span class="token punctuation">(</span>在AndroidManifest文件中<span class="token punctuation">)</span>
+<span class="token operator">&lt;</span>service android:name<span class="token operator">=</span><span class="token string">".MyIntentService"</span>/<span class="token operator">></span>
+
+//第三步，启动服务<span class="token punctuation">(</span>在activity中<span class="token punctuation">)</span>
+Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>MainActivity.this,MyIntentService.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+startService<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h6 id="2-4-3-注意"><a href="#2-4-3-注意" class="headerlink" title="2.4.3 注意"></a>2.4.3 注意</h6><p>① IntentService与Activity间通信：<br>Activity传值给IntentService：Intent、EventBus等<br>IntentService传值给Activity：广播、EventBus等（回调我试过了，竟然不行！）</p>
+<p>② 为何不用bindService方式启动IntentService？<br>IntentService的工作原理是，在IntentService的onCreate里创建一个HandlerThread，并利用其内部的Looper实例化一个ServiceHandler对象；而这个ServiceHandler用于处理消息的handleMessage方法会去调用IntentService的onHandleIntent方法，这也是为什么可在该方法中去处理后台任务的原因。当有Intent任务请求时会把Intent封装成Message，然后ServiceHandler会把消息发送出去，而发送消息是在onStartCommand中完成的，只能通过startService方法才可走该生命周期方法，所以不能用bindService方式启动IntentService。</p>
+<h3 id="三、服务的生命周期"><a href="#三、服务的生命周期" class="headerlink" title="三、服务的生命周期"></a>三、服务的生命周期</h3><p><img src="https://upload-images.jianshu.io/upload_images/15623160-5d615e1f533e4b2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="3-1-通过startService方式启动服务"><a href="#3-1-通过startService方式启动服务" class="headerlink" title="3.1 通过startService方式启动服务"></a>3.1 通过startService方式启动服务</h5><ul>
+<li>生命周期：onCreate -&gt; onStartCommand -&gt; onDestroy</li>
+<li>通过stopService或者stopSelf方法停止服务。</li>
+<li>一旦服务开启就跟调用者(开启者)没有任何关系了。</li>
+<li>开启者退出了，开启者挂了，服务还在后台长期的运行。</li>
+<li>开启者不能调用服务里面的方法。</li>
+</ul>
+<h5 id="3-2-通过bindService方式启动服务"><a href="#3-2-通过bindService方式启动服务" class="headerlink" title="3.2 通过bindService方式启动服务"></a>3.2 通过bindService方式启动服务</h5><ul>
+<li>生命周期：onCreate -&gt; onBind -&gt; onUnBind -&gt; onDestroy</li>
+<li>通过unbindService方法停止服务。</li>
+<li>该方式开启服务，绑定服务，调用者挂了，服务也会跟着挂掉。</li>
+<li>绑定者可以调用服务里面的方法。</li>
+<li>常用于Service和Activity间通信。</li>
+</ul>
+<h5 id="3-3-注意"><a href="#3-3-注意" class="headerlink" title="3.3 注意"></a>3.3 注意</h5><p>① 当服务在启动之前还没有创建过，onCreate方法会先执行，否则不会再执行。<br>② 一个Activity先start一个Service之后，再bind时会回调什么方法？此时如何才能回调Service的destroy方法呢？<br>只会回调onBind方法。这种情况下要同时调用stopService和unbindService方法。</p>
+<h3 id="四、服务的基本用法"><a href="#四、服务的基本用法" class="headerlink" title="四、服务的基本用法"></a>四、服务的基本用法</h3><h5 id="4-1-startService方式"><a href="#4-1-startService方式" class="headerlink" title="4.1 startService方式"></a>4.1 startService方式</h5><pre class=" language-bash"><code class="language-bash">//第一步，自定义类继承Service,必须重写onBind方法
+public class MyService extends Service <span class="token punctuation">{</span>
+
+    private static final String TAG <span class="token operator">=</span> <span class="token string">"MyService"</span><span class="token punctuation">;</span>
+
+    @Override
+    public IBinder onBind<span class="token punctuation">(</span>Intent intent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"onBind: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    //第二步，选择性的重写onCreate,onStartCommand和onDestroy方法
+
+    @Override
+    public void onCreate<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"onCreate: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        super.onCreate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    public int onStartCommand<span class="token punctuation">(</span>Intent intent, int flags, int startId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"onStartCommand: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> super.onStartCommand<span class="token punctuation">(</span>intent, flags, startId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    public void onDestroy<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"onDestroy: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        super.onDestroy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+//第三步，注册服务
+<span class="token operator">&lt;</span>service android:name<span class="token operator">=</span><span class="token string">".MyService"</span>/<span class="token operator">></span>
+
+//第四步，启动或者停止服务
+//启动服务
+Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>Main3Activity.this,MyService.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+startService<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//停止服务
+Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>Main3Activity.this,MyService.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+stopService<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h5 id="4-2-bindService方式-也是service与activity通信的方式"><a href="#4-2-bindService方式-也是service与activity通信的方式" class="headerlink" title="4.2 bindService方式(也是service与activity通信的方式)"></a>4.2 bindService方式(也是service与activity通信的方式)</h5><p>整体思路：<br>首先，自定义类继承Binder，按照自己的业务逻辑写相应的方法供activity调用。<br>然后，自定义类继承Service，在onBind方法中返回自定义的Binder。<br>接着，实例化ServiceConnection对象，重写onServiceConnected和onServiceDisconnected方法。<br>最后，bindService绑定服务即可。</p>
+<pre class=" language-bash"><code class="language-bash">public class MyService extends Service <span class="token punctuation">{</span>
+
+    private static final String TAG <span class="token operator">=</span> <span class="token string">"MyService"</span><span class="token punctuation">;</span>
+    private DownloadBinder mBinder <span class="token operator">=</span> new DownloadBinder<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    //自定义类继承Binder
+    class DownloadBinder extends Binder <span class="token punctuation">{</span>
+
+        public void startDownload<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"startDownload: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        public int getProgress<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"getProgress: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    public IBinder onBind<span class="token punctuation">(</span>Intent intent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"onBind: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> mBinder<span class="token punctuation">;</span> //返回自定义的Binder对象
+    <span class="token punctuation">}</span>
+
+    @Override
+    public void onCreate<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"onCreate: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        super.onCreate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    public boolean onUnbind<span class="token punctuation">(</span>Intent intent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"onUnbind: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> super.onUnbind<span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    public void onDestroy<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log.i<span class="token punctuation">(</span>TAG, <span class="token string">"onDestroy: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        super.onDestroy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">public class Main3Activity extends AppCompatActivity <span class="token punctuation">{</span>
+
+    private static final String TAG <span class="token operator">=</span> <span class="token string">"Main3Activity"</span><span class="token punctuation">;</span>
+    private Button btn_send,btn_quit<span class="token punctuation">;</span>
+    private MyService.DownloadBinder downloadBinder<span class="token punctuation">;</span>
+    private ServiceConnection connection <span class="token operator">=</span> new ServiceConnection<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        //service与activity绑定成功时调用
+        @Override
+        public void onServiceConnected<span class="token punctuation">(</span>ComponentName name, IBinder service<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            downloadBinder <span class="token operator">=</span> <span class="token punctuation">(</span>MyService.DownloadBinder<span class="token punctuation">)</span> <span class="token function">service</span><span class="token punctuation">;</span>
+            downloadBinder.startDownload<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            downloadBinder.getProgress<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        //service与activity绑定断开时调用
+        @Override
+        public void onServiceDisconnected<span class="token punctuation">(</span>ComponentName name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    @Override
+    protected void onCreate<span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super.onCreate<span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        setContentView<span class="token punctuation">(</span>R.layout.activity_main3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        btn_send <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_send<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_send.setOnClickListener<span class="token punctuation">(</span>new View.OnClickListener<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            @Override
+            public void onClick<span class="token punctuation">(</span>View v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>Main3Activity.this,MyService.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                //第三个参数表示在活动和服务进行绑定后自动创建服务
+                bindService<span class="token punctuation">(</span>intent,connection,BIND_AUTO_CREATE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        btn_quit <span class="token operator">=</span> findViewById<span class="token punctuation">(</span>R.id.btn_quit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btn_quit.setOnClickListener<span class="token punctuation">(</span>new View.OnClickListener<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            @Override
+            public void onClick<span class="token punctuation">(</span>View v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                //解除绑定
+                unbindService<span class="token punctuation">(</span>connection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="五、前台服务"><a href="#五、前台服务" class="headerlink" title="五、前台服务"></a>五、前台服务</h3><h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>服务几乎都是在后台运行的，系统优先级还是比较低的，当系统出现内存不足时就有可能会回收掉正在后台运行的服务。此时为了防止服务被回收掉，就可以使用前台服务。前台服务和普通服务最大的区别就在于，它会一直有一个正在运行的图标在系统状态栏显示，下拉状态栏可以看到更加详细的信息，非常类似于通知的效果。</p>
+<h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><pre class=" language-bash"><code class="language-bash">public class MyService extends Service <span class="token punctuation">{</span>
+
+    <span class="token punctuation">..</span>.
+
+    @Override
+    public void onCreate<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super.onCreate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Intent intent <span class="token operator">=</span> new Intent<span class="token punctuation">(</span>this,MainActivity.class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        PendingIntent pi <span class="token operator">=</span> PendingIntent.getActivity<span class="token punctuation">(</span>this,0,intent,0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Notification notification <span class="token operator">=</span> new Notification.Builder<span class="token punctuation">(</span>this<span class="token punctuation">)</span>
+                .setContentTitle<span class="token punctuation">(</span><span class="token string">"This is content title"</span><span class="token punctuation">)</span>
+                .setContentText<span class="token punctuation">(</span><span class="token string">"This is content text"</span><span class="token punctuation">)</span>
+                .setWhen<span class="token punctuation">(</span>System.currentTimeMillis<span class="token punctuation">(</span><span class="token punctuation">))</span>
+                .setSmallIcon<span class="token punctuation">(</span>R.mipmap.ic_launcher<span class="token punctuation">)</span>
+                .setLargeIcon<span class="token punctuation">(</span>BitmapFactory.decodeResource<span class="token punctuation">(</span>getResources<span class="token punctuation">(</span><span class="token punctuation">)</span>,R.mipmap.ic_launcher<span class="token punctuation">))</span>
+                .setContentIntent<span class="token punctuation">(</span>pi<span class="token punctuation">)</span>
+                .build<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        startForeground<span class="token punctuation">(</span>1,notification<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p>现在Android对于通知栏已经做了修改，我们还需要去做版本适配，在这里我就不展开来讲了，贴一个郭神的文章吧<a href="https://blog.csdn.net/guolin_blog/article/details/79854070" target="_blank" rel="noopener">Android通知栏微技巧，8.0系统中通知栏的适配</a></p>
+<h3 id="六、保证service不被杀死的方法"><a href="#六、保证service不被杀死的方法" class="headerlink" title="六、保证service不被杀死的方法"></a>六、保证service不被杀死的方法</h3><ul>
+<li>在Service的onStartCommand方法中设置flages值为START_STICKY，使得Service被杀死后尝试再次启动Service。</li>
+<li>提升Service优先级，比如设置为一个前台服务。</li>
+<li>在Activity的onDestroy通过发送广播，并在广播接收器的onReceive中启动service。</li>
+</ul>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://longsh1z.github.io" rel="external nofollow noreferrer">Anthony</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://longsh1z.github.io/2020/03/21/si-da-zu-jian-zhi-service/">https://longsh1z.github.io/2020/03/21/si-da-zu-jian-zhi-service/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://longsh1z.github.io" target="_blank">Anthony</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Service/">
+                                    <span class="chip bg-color">Service</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/03/21/si-da-zu-jian-zhi-contentprovider/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="四大组件之ContentProvider">
+                        
+                        <span class="card-title">四大组件之ContentProvider</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+本文目录结构：一、内容提供器简介二、数据存储方案三、运行时权限四、访问其他程序中的数据五、创建自己的内容提供器
+
+一、内容提供器简介
+作为四大组件之一，Content Provider主要用于存储数据和在不同的应用程序之间共享数据。和文件
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Anthony
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Content-Provider/">
+                        <span class="chip bg-color">Content Provider</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/21/si-da-zu-jian-zhi-broadcastreceiver/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Receiver">
+                        
+                        <span class="card-title">Receiver</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+本文目录结构：一、广播机制简介二、接收系统广播三、发送自定义广播四、使用本地广播
+
+一、广播机制简介定义：类似于网络通信原理中的广播，Android中也有一套类似的广播机制。通俗来讲，广播分为发送者和接收者，发送者发出一条广播，相应的接收
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Anthony
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Broadcast-Receiver/">
+                        <span class="chip bg-color">Broadcast Receiver</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="https://longsh1z.github.io" target="_blank">Anthony</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">14.9k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/LongSh1z" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2674461089@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2674461089" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2674461089" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
